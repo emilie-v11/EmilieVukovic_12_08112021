@@ -1,0 +1,9 @@
+.btn-icon {
+    width: 64px;
+    height: 64px;
+    background: #fff;
+    border: none;
+    border-radius: 6px;
+    margin: 10px;
+    cursor: pointer;
+}
