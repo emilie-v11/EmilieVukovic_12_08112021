@@ -6,8 +6,8 @@ import NavIcons from './components/NavIcons/NavIcons';
 function App() {
     return (
         <div className="App">
-            <NavIcons />
             <Header />
+            <NavIcons />
             <Routes>
                 <Route></Route>
                 <Route></Route>

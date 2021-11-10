@@ -11,52 +11,27 @@ const NavIcons = () => {
     return (
         <nav className="nav-icons">
             <ButtonIcon
-                path="/user"
+                path="/user/meditation"
                 imgSrc={MeditationIcon}
                 altText="Voir méditation"
             />
             <ButtonIcon
-                path="/user"
+                path="/user/swimming"
                 imgSrc={SwimmingIcon}
                 altText="Voir natation"
             />
 
             <ButtonIcon
-                path="/user"
+                path="/user/cycling"
                 imgSrc={CyclingIcon}
                 altText="Voir cyclisme"
             />
 
             <ButtonIcon
-                path="/user"
+                path="/user/weight"
                 imgSrc={WeightIcon}
                 altText="Voir musculation"
             />
-
-            {/* <NavLink
-                className={navData =>
-                    navData.isActive ? 'nav-icon selected' : 'nav-icon'
-                }
-                to="/swimming"
-            >
-                <ButtonIcon imgSrc={SwimmingIcon} altText="Voir natation" />
-            </NavLink>
-            <NavLink
-                className={navData =>
-                    navData.isActive ? 'nav-icon selected' : 'nav-icon'
-                }
-                to="/cycling"
-            >
-                <ButtonIcon path="/user" imgSrc={CyclingIcon} altText="Voir cyclisme" />
-            </NavLink>
-            <NavLink
-                className={navData =>
-                    navData.isActive ? 'nav-icon selected' : 'nav-icon'
-                }
-                to="/weight"
-            >
-                <ButtonIcon path="/user" imgSrc={WeightIcon} altText="Voir musculation" />
-            </NavLink> */}
             <p className="copyright">
                 Copyright, SportSee {new Date().getFullYear()}
             </p>

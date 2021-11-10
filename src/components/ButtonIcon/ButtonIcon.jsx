@@ -10,10 +10,9 @@ import './ButtonIcon.css';
 const ButtonIcon = ({ path, imgSrc, altText }) => {
     return (
         <NavLink
-            className={navData =>
-                navData.isActive ? 'nav-icon selected' : 'nav-icon'
-            }
+            className="nav-icon"
             to={path}
+            onClick={e => e.preventDefault()}
         >
             <button className="btn-icon">
                 <img className="icon" src={imgSrc} alt={altText} />
@@ -25,6 +24,7 @@ const ButtonIcon = ({ path, imgSrc, altText }) => {
 ButtonIcon.propTypes = {
     imgSrc: PropTypes.string.isRequired,
     altText: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
 };
 
 export default ButtonIcon;
