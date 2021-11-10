@@ -22,6 +22,7 @@ const Navbar = () => {
                     navData.isActive ? 'nav-item selected' : 'nav-item'
                 }
                 to="/profile"
+                onClick={e => e.preventDefault()}
             >
                 Profil
             </NavLink>
@@ -30,6 +31,7 @@ const Navbar = () => {
                     navData.isActive ? 'nav-item selected' : 'nav-item'
                 }
                 to="/setting"
+                onClick={e => e.preventDefault()}
             >
                 Réglage
             </NavLink>
@@ -38,6 +40,7 @@ const Navbar = () => {
                     navData.isActive ? 'nav-item selected' : 'nav-item'
                 }
                 to="/community"
+                onClick={e => e.preventDefault()}
             >
                 Communauté
             </NavLink>
