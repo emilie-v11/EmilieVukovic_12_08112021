@@ -10,31 +10,33 @@ import './NavIcons.css';
 const NavIcons = () => {
     return (
         <nav className="nav-icons">
-            <ButtonIcon
-                path="/user/meditation"
-                imgSrc={MeditationIcon}
-                altText="Voir méditation"
-            />
-            <ButtonIcon
-                path="/user/swimming"
-                imgSrc={SwimmingIcon}
-                altText="Voir natation"
-            />
+            <div className="container-icons">
+                <ButtonIcon
+                    path="/user/meditation"
+                    imgSrc={MeditationIcon}
+                    altText="Voir méditation"
+                />
+                <ButtonIcon
+                    path="/user/swimming"
+                    imgSrc={SwimmingIcon}
+                    altText="Voir natation"
+                />
 
-            <ButtonIcon
-                path="/user/cycling"
-                imgSrc={CyclingIcon}
-                altText="Voir cyclisme"
-            />
+                <ButtonIcon
+                    path="/user/cycling"
+                    imgSrc={CyclingIcon}
+                    altText="Voir cyclisme"
+                />
 
-            <ButtonIcon
-                path="/user/weight"
-                imgSrc={WeightIcon}
-                altText="Voir musculation"
-            />
-            <p className="copyright">
+                <ButtonIcon
+                    path="/user/weight"
+                    imgSrc={WeightIcon}
+                    altText="Voir musculation"
+                />
+            </div>
+            <span className="copyright">
                 Copyright, SportSee {new Date().getFullYear()}
-            </p>
+            </span>
         </nav>
     );
 };
