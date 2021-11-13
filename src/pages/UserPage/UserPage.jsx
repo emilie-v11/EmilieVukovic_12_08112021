@@ -36,7 +36,7 @@ const UserPage = () => {
                             <img className="icon-img" src={Energy} alt="" />
                         </div>
                         <p className="key-data-value">
-                            <span className="calorieCount">1,930kCal</span>
+                            <span className="calorie-count">1,930kCal</span>
                             <span className="unit-measurement">Calories</span>
                         </p>
                     </div>
@@ -49,8 +49,8 @@ const UserPage = () => {
                             <img className="icon-img" src={Chicken} alt="" />
                         </div>
                         <p className="key-data-value">
-                            <span className="calorieCount">1,930kCal</span>
-                            <span className="unit-measurement">Calories</span>
+                            <span className="calorie-count">155g</span>
+                            <span className="unit-measurement">Proteines</span>
                         </p>
                     </div>
 
@@ -62,8 +62,8 @@ const UserPage = () => {
                             <img className="icon-img" src={Apple} alt="" />
                         </div>
                         <p className="key-data-value">
-                            <span className="calorieCount">1,930kCal</span>
-                            <span className="unit-measurement">Calories</span>
+                            <span className="calorie-count">290g</span>
+                            <span className="unit-measurement">Glucides</span>
                         </p>
                     </div>
 
@@ -79,8 +79,8 @@ const UserPage = () => {
                             />
                         </div>
                         <p className="key-data-value">
-                            <span className="calorieCount">1,930kCal</span>
-                            <span className="unit-measurement">Calories</span>
+                            <span className="calorie-count">50g</span>
+                            <span className="unit-measurement">Lipides</span>
                         </p>
                     </div>
                 </div>

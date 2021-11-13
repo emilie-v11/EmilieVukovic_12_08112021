@@ -1,30 +1,16 @@
 .main-userPage {
-    /* margin: 5.6rem 0 0 7.5rem; */
-    /* margin: 0 0 0 8.3%; */
-    margin: 0 0 0 7.3rem;
-
-    /* padding: 4.25rem 5.4rem 0; */
-    /* padding: 4.2% 6.5% 0; */
-    padding: 4.2% 6% 0;
-    padding: 4.2% 6% 0 7.6%;
-    max-width: 100%;
+    position: relative;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
-    /* width: 100%; */
     align-items: center;
-
+    max-width: 100%;
     height: 90vh;
-    position: relative;
-
-    /* width: 93%; */
+    margin: 0 0 0 7.3rem;
+    padding: 4.2% 6% 0 7.6%;
 }
 
 .userPage-heading {
-    /* background: gray; */
-    /* margin: 0 1rem; */
     margin-bottom: 4.5rem;
-    width: 70rem;
     width: 100%;
 }
 
@@ -45,56 +31,40 @@
 }
 
 .userPage-informations {
-    /* background: #f5f5f5; */
     display: flex;
     justify-content: space-between;
-    width: 96%;
     width: 100%;
     height: 71%;
-    /* height: 75%; */
 }
-/* todo */
+
 .userPage-graphs {
-    /* width: 78%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 74%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
-/* todo */
+
 .keys-data-cards {
-    /* background: orange; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     width: 23%;
     height: 100%;
 }
 
 .day-activity {
-    border-radius: 0.3125rem;
-    background: #fbfbfb;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
-
-    width: 835px;
-    height: 320px;
-    margin: 1rem;
-
     width: 100%;
-    height: 52%;
     height: 53%;
     margin: 0;
-
-    background: grey;
+    background: #fbfbfb;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+    border-radius: 0.3125rem;
 }
 
 .trio-charts {
-    /* background: pink; */
     display: flex;
     justify-content: space-between;
-
     width: 100%;
     height: 43%;
 }
@@ -103,10 +73,10 @@
 .radar-chart,
 .radial-bar-chart,
 .bar-chart {
-    border-radius: 0.3125rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 0.3125rem;
 }
 
 .bar-chart {
@@ -117,86 +87,67 @@
 .line-chart,
 .radar-chart,
 .radial-bar-chart {
-    /* border-radius: 0.3125rem; */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
-
-    margin: 1rem;
-    /* width: 258px; */
     width: 31%;
-    height: 263px;
-
-    margin: 0;
     height: 100%;
-
-    background: yellow;
+    margin: 0;
 }
 
 .line-chart {
     background: #ff0000;
-
-    background: grey;
 }
 
 .radar-chart {
     background: #282d30;
-
-    background: grey;
 }
 
 .radial-bar-chart {
     background: #fbfbfb;
-
-    background: grey;
 }
 
 .keys-data-card {
+    display: flex;
+    align-items: center;
+    height: 20.5%;
+    margin: 0;
     background: #fbfbfb;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
     border-radius: 0.31rem;
-
-    /* width: 16rem; */
-    height: 7.75rem;
-    margin: 1rem;
-    display: flex;
-    align-items: center;
-
-    margin: 0;
-    height: 20.5%;
-
-    background: grey;
 }
 
 .key-data-icon {
-    border-radius: 0.375rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.7;
-
-    /* width: 60px;
-    height: 60px; */
     width: 3.75rem;
     height: 3.75rem;
-
     margin: 2rem 1.5rem 2rem 2rem;
+    border-radius: 0.375rem;
+    opacity: 0.7;
 }
 
 .key-data-value {
     display: flex;
     flex-direction: column;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: left;
 }
 
-/* ******************************************************************* */
-/* @media only screen and (max-width: 1439px) */
+.calorie-count {
+    color: #282d30;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.unit-measurement {
+    color: #74798c;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
 @media only screen and (max-width: 1299px) {
     .main-userPage {
-        /* width: 87%; */
-        /* height: 90vh; */
-        /* padding-top: 1%;
-        padding-left: 2%;
-        padding-left: 1%; */
-        /* position: relative; */
-
         padding: 1% 0 0 1%;
     }
 
@@ -207,79 +158,50 @@
     .userPage-heading h1 {
         margin-bottom: 1rem;
         font-size: 2rem;
-        /* font-size: 2.5rem; */
-
-        /* line-height: 2vh; */
     }
 
-    /* .userPage-heading p {
+    .userPage-heading p {
         font-size: 1rem;
-    } */
+    }
 
     .userPage-informations {
-        /* display: flex;
-        justify-content: space-between; */
-        /* height: 75%; */
-        /* width: 96%;
-        height: 72%; */
-        
         position: absolute;
         bottom: 7vh;
         width: 95%;
     }
 
-    .userPage-graphs {
-        /* width: 78%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; */
-    }
-    .keys-data-cards {
-        /* display: flex;
-        flex-direction: column;
-        justify-content: space-between; */
-
-        /* width: 20%;
-        height: 100%; */
-    }
-    .day-activity {
-        /* width: 100%;
-        height: 54%;
-        margin: 0; */
-    }
-    .trio-charts {
-        /* display: flex;
-        justify-content: space-between; */
-
-        /* width: 100%;
-        height: 43%; */
-    }
-    .line-chart,
-    .radar-chart,
-    .radial-bar-chart,
     .bar-chart {
-        /* border-radius: 0.3125rem; */
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-    .bar-chart {
         width: 100%;
         height: 100%;
     }
+
     .line-chart,
     .radar-chart,
     .radial-bar-chart {
-        /* width: 32%; */
-        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 100%;
-    }
-    .keys-data-card {
         margin: 0;
-        height: 21%;
     }
+
+    .keys-data-card {
+        height: 21%;
+        margin: 0;
+    }
+
     .key-data-icon {
         margin: 1rem;
+    }
+
+    .calorie-count {
+        font-size: 0.875rem;
+    }
+
+    .unit-measurement {
+        font-size: 0.75rem;
     }
 }
