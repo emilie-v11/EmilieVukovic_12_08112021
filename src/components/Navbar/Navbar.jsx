@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as Logo } from '../Logo/logo.svg';
+import { ReactComponent as Logo } from '../../assets/logo.svg';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -11,8 +11,6 @@ const Navbar = () => {
                 className={navData =>
                     navData.isActive ? 'nav-item selected' : 'nav-item'
                 }
-                // className="Nav-Item"
-                // activeClassName="selected"
                 to="/"
             >
                 Accueil
@@ -22,7 +20,7 @@ const Navbar = () => {
                     navData.isActive ? 'nav-item selected' : 'nav-item'
                 }
                 to="/profile"
-                onClick={e => e.preventDefault()}
+                // onClick={e => e.preventDefault()}
             >
                 Profil
             </NavLink>
