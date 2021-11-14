@@ -1,10 +1,10 @@
 import React from 'react';
 // import { NavLink } from 'react-router-dom';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
-import MeditationIcon from '../../assets/meditation-icon.svg';
-import SwimmingIcon from '../../assets/swimming-icon.svg';
-import CyclingIcon from '../../assets/cycling-icon.svg';
-import WeightIcon from '../../assets/weight-icon.svg';
+import MeditationIcon from '../../assets/icons-NavIcon/meditation-icon.svg';
+import SwimmingIcon from '../../assets/icons-NavIcon/swimming-icon.svg';
+import CyclingIcon from '../../assets/icons-NavIcon/cycling-icon.svg';
+import WeightIcon from '../../assets/icons-NavIcon/weight-icon.svg';
 import './NavIcons.css';
 
 const NavIcons = () => {

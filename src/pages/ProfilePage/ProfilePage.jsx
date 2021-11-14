@@ -1,11 +1,11 @@
 import React from 'react';
-import './UserPage.css';
-import Energy from '../../assets/energy.svg';
-import Chicken from '../../assets/chicken.svg';
-import Apple from '../../assets/apple.svg';
-import Cheeseburger from '../../assets/cheeseburger.svg';
+import './ProfilePage.css';
+import Energy from '../../assets/icons-keyData/energy.svg';
+import Chicken from '../../assets/icons-keyData/chicken.svg';
+import Apple from '../../assets/icons-keyData/apple.svg';
+import Cheeseburger from '../../assets/icons-keyData/cheeseburger.svg';
 
-const UserPage = () => {
+const ProfilePage = () => {
     return (
         <main className="main-userPage">
             <div className="userPage-heading">
@@ -89,4 +89,4 @@ const UserPage = () => {
     );
 };
 
-export default UserPage;
+export default ProfilePage;
