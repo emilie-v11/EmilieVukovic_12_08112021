@@ -1,26 +1,28 @@
-// import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
-// import NavIcons from './components/NavIcons/NavIcons';
-// import Error404 from './pages/Error404/Error404';
-import UserPage from './pages/UserPage/UserPage';
+import Error404 from './pages/Error404/Error404';
+import SwitchUsers from './pages/SwitchUsers/SwitchUsers';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import NavIcons from './components/NavIcons/NavIcons';
 
 function App() {
     return (
         <div className="App">
             <Header />
-            {/* <NavIcons /> */}
-            <UserPage />
+            <NavIcons />
+            {/* <ProfilePage /> */}
             {/* <Route path="/" element={<Navigate to="/home" />} /> */}
-            {/* <Routes>
-                <Route path="/user/:id" element={<UserPage />} />
+            <Routes>
+                <Route path="/" element={<SwitchUsers />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                {/* <Route path="/user/:id" element={<ProfilePage /> */}
                 <Route path="*" element={<Error404 />} />
-            </Routes> */}
+            </Routes>
 
             {/* <Route path="/" element={<Navigate to="/home" />} /> */}
             {/* <Routes>
-                <Route path="/user/:id" element={<UserPage />} />
-                <Route path="*" element={<Error404 />} />
+                <Route path="/user/:id" element={<ProfilePage />} />
             </Routes> */}
         </div>
     );
