@@ -1,4 +1,4 @@
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
 import Error404 from './pages/Error404/Error404';
@@ -15,8 +15,8 @@ function App() {
             {/* <Route path="/" element={<Navigate to="/home" />} /> */}
             <Routes>
                 <Route path="/" element={<SwitchUsers />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                {/* <Route path="/user/:id" element={<ProfilePage /> */}
+                {/* <Route path="/profile" element={<ProfilePage />} /> */}
+                <Route path="/user/:id" element={<ProfilePage />} />
                 <Route path="*" element={<Error404 />} />
             </Routes>
 
