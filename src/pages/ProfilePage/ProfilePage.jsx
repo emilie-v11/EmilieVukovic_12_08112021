@@ -16,7 +16,11 @@ import {
 } from '../../services/calls-API';
 
 const ProfilePage = () => {
-    const [userInfos, setUserInfos] = useState({});
+    const [userInfos, setUserInfos] = useState({
+        firstName: '',
+    });
+    const [todayScore, setTodayScore] = useState('');
+    const [keyData, setKeyData] = useState({});
     const [userActivity, setUserActivity] = useState({});
     const [userAverageSessions, setUserAverageSessions] = useState({});
     const [userPerformance, setUserPerformance] = useState({});
@@ -30,12 +34,16 @@ const ProfilePage = () => {
     useEffect(() => {
         setIsLoading(true);
         setError(false);
-        
+
         async function getUserInfosData() {
             try {
                 const response = await getUserInfos(id);
-                console.log('userInfos', response.data.data);
-                setUserInfos(response.data.data);
+                setUserInfos(response.data.data.userInfos);
+                setTodayScore(response.data.data.todayScore);
+                setKeyData(response.data.data.keyData);
+                console.log('userInfos', response.data.data.userInfos);
+                console.log('todayScore', response.data.data.todayScore);
+                console.log('keyData', response.data.data.keyData);
             } catch (error) {
                 console.error('Error: userInfos', error);
                 setError(true);
@@ -45,10 +53,10 @@ const ProfilePage = () => {
         async function getUserActivityData() {
             try {
                 const response = await getUserActivity(id);
-                console.log('userActivity', response.data.data);
+                console.log('activity', response.data.data);
                 setUserActivity(response.data.data);
             } catch (error) {
-                console.error('Error: userActivity', error);
+                console.error('Error: activity', error);
                 setError(true);
             }
         }
@@ -56,10 +64,10 @@ const ProfilePage = () => {
         async function getUserAverageSessionsData() {
             try {
                 const response = await getUserAverageSessions(id);
-                console.log('userAverageSessions', response.data.data);
+                console.log('averageSessions', response.data.data);
                 setUserAverageSessions(response.data.data);
             } catch (error) {
-                console.error('Error: userAverageSessions', error);
+                console.error('Error: averageSessions', error);
                 setError(true);
             }
         }
@@ -67,10 +75,10 @@ const ProfilePage = () => {
         async function getUserPerformanceData() {
             try {
                 const response = await getUserPerformance(id);
-                console.log('userPerformance', response.data.data);
+                console.log('performance', response.data.data);
                 setUserPerformance(response.data.data);
             } catch (error) {
-                console.error('Error: userPerformance', error);
+                console.error('Error: performance', error);
                 setError(true);
             }
         }
@@ -78,6 +86,8 @@ const ProfilePage = () => {
         getUserActivityData();
         getUserAverageSessionsData();
         getUserPerformanceData();
+
+        setIsLoading(false);
     }, [id]);
 
     // try {
@@ -116,16 +126,22 @@ const ProfilePage = () => {
     //     }
     // }
 
+    /* {!isLoading && (
+    )}
+    {!isLoading && error && <Error404 />}
+    {isLoading && <p>Loading...</p>} */
+
+    // const firstName = userInfos.firstName;
+    
+
     return (
         <main className="main-userPage">
             <div className="userPage-heading">
                 <h1>
-                    Bonjour <span className="userPage-firstName"> Prénom</span>
-                    {/* {!isLoading && (
-                        <span className="userPage-firstName">Prénom{id}</span>
-                    )}
-                    {!isLoading && error && <Error404 />}
-                    {isLoading && <p>Loading...</p>} */}
+                    {`Bonjour `}
+                    <span className="userPage-firstName">
+                        {userInfos.firstName}
+                    </span>
                 </h1>
                 <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
             </div>
