@@ -12,6 +12,7 @@ const Navbar = () => {
                     navData.isActive ? 'nav-item selected' : 'nav-item'
                 }
                 to="/"
+                onClick={e => e.preventDefault()}
             >
                 Accueil
             </NavLink>

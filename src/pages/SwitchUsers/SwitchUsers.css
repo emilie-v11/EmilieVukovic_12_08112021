@@ -14,10 +14,12 @@
 .main-switchUsers h1 {
     color: #ff0000;
     font-size: 3rem;
+    margin-bottom: 2rem;
 }
 
 .container-users {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .user {
@@ -25,14 +27,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 20rem;
-    height: 20rem;
-    border-radius: 0.375rem;
+    flex-wrap: wrap;
+    width: 18rem;
+    height: 18rem;
+    text-align: center;
     border-radius: 50%;
-    margin: 3rem;
+    margin: 2rem;
     box-shadow: 0px 4px 12px rgb(0 0 0 / 25%);
 }
 
-.icon-user {
-    font-size: 1rem;
-}

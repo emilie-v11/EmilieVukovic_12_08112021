@@ -1,21 +1,26 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './SwitchUsers.css';
+import { userData } from '../../mock/data';
 
 const SwitchUsers = () => {
     return (
         <main className="main-switchUsers">
             <h1>Switch Users</h1>
             <section className="container-users">
-                <NavLink className="user id-12" to="/user/12">
-                    <h2>Karl Dovineau</h2>
-                    <p>profile/user/12</p>
-                </NavLink>
-                <NavLink className="user id-18" to="/user/18">
-                    {/* <NavLink className="user id-18" to="/profile/user/18"> */}
-                    <h2>Cecilia Ratorez</h2>
-                    <p>profile/user/18</p>
-                </NavLink>
+                {userData.map(user => (
+                    <NavLink
+                        key={user.id}
+                        className="user"
+                        to={`/profile/user/${user.id}`}
+                    >
+                        <h2>
+                            {`${user.userInfos.firstName}
+                            ${user.userInfos.lastName}`}
+                        </h2>
+                        <p>profile/user/{user.id}</p>
+                    </NavLink>
+                ))}
             </section>
         </main>
     );
