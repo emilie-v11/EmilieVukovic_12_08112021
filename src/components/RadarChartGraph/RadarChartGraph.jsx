@@ -9,22 +9,22 @@ import {
 import './RadarChartGraph.css';
 
 const RadarChartGraph = ({ userPerformance }) => {
-    console.log(userPerformance);
+    const userPerformanceArray = [...userPerformance];
 
-    const dataPerformance = userPerformance.map(value => {
+    const dataPerformance = userPerformanceArray.reverse().map(value => {
         switch (value.kind) {
             case 1:
-                return { activity: 'Intensité', ...value };
-            case 2:
-                return { activity: 'Vitesse', ...value };
-            case 3:
-                return { activity: 'Force', ...value };
-            case 4:
-                return { activity: 'Endurance', ...value };
-            case 5:
-                return { activity: 'Energie', ...value };
-            case 6:
                 return { activity: 'Cardio', ...value };
+            case 2:
+                return { activity: 'Energie', ...value };
+            case 3:
+                return { activity: 'Endurance', ...value };
+            case 4:
+                return { activity: 'Force', ...value };
+            case 5:
+                return { activity: 'Vitesse', ...value };
+            case 6:
+                return { activity: 'Intensité', ...value };
             default:
                 return { ...value };
         }
