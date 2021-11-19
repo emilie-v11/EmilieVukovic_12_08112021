@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Radar,
     RadarChart,
@@ -6,7 +7,6 @@ import {
     PolarAngleAxis,
     ResponsiveContainer,
 } from 'recharts';
-import './RadarChartGraph.css';
 
 const RadarChartGraph = ({ userPerformance }) => {
     const userPerformanceArray = [...userPerformance];
@@ -31,11 +31,10 @@ const RadarChartGraph = ({ userPerformance }) => {
     });
 
     return (
-        <ResponsiveContainer width="100%" height="100%" padding={10}>
+        <ResponsiveContainer width="100%" height="100%">
             <RadarChart
-                cx="50%"
-                cy="50%"
-                padding={0}
+                // cx="50%"
+                // cy="50%"
                 data={dataPerformance}
                 outerRadius={window.innerWidth > 1340 ? '70%' : '60%'}
             >
@@ -44,19 +43,22 @@ const RadarChartGraph = ({ userPerformance }) => {
                     dataKey="activity"
                     stroke="#fff"
                     tickLine={false}
-                    tickSize="10"
-                    fontSize="12"
+                    tickSize={10}
+                    fontSize={12}
                     // tick={customTick}
                 />
                 <Radar
-                    name="Mike"
-                    dataKey="value" // "A"
+                    dataKey="value"
                     fill="rgb(255, 1, 1)"
                     fillOpacity={0.7}
                 />
             </RadarChart>
         </ResponsiveContainer>
     );
+};
+
+RadarChartGraph.propTypes = {
+    dataPerformance: PropTypes.array,
 };
 
 export default RadarChartGraph;
