@@ -1,0 +1,46 @@
+.wrap {
+    position: relative;
+    /* z-index: 0; */
+    background: transparent;
+    width: 100%;
+    height: 100%;
+}
+
+.legend-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.score-heading {
+    position: absolute;
+    top: 24px;
+    left: 30px;
+    font-size: 1rem;
+    color: #282d30;
+}
+
+.legend-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    width: 30%;
+    height: auto;
+}
+
+.score-number {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.goal-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #848a9a;
+}
