@@ -1,4 +1,4 @@
-.main-userPage {
+.main-profilePage {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -10,35 +10,35 @@
 }
 
 /* Greetings */
-.userPage-heading {
+.profilePage-heading {
     margin-bottom: 4.5rem;
     width: 100%;
 }
 
-.userPage-heading h1 {
+.profilePage-heading h1 {
     font-size: 3rem;
     color: #000;
     font-weight: 500;
     margin-bottom: 1.5rem;
 }
 
-.userPage-firstName {
+.profilePage-firstName {
     color: #ff0c05;
 }
 
-.userPage-heading p {
+.profilePage-heading p {
     font-size: 1.1rem;
     font-weight: 400;
 }
 
-.userPage-informations {
+.profilePage-informations {
     display: flex;
     justify-content: space-between;
     width: 100%;
     height: 71%;
 }
 
-.userPage-graphs {
+.profilePage-graphs {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -99,24 +99,24 @@
 }
 
 @media only screen and (max-width: 1299px) {
-    .main-userPage {
+    .main-profilePage {
         padding: 1% 0 0 1%;
     }
 
-    .userPage-heading {
+    .profilePage-heading {
         padding: 1rem;
     }
 
-    .userPage-heading h1 {
+    .profilePage-heading h1 {
         margin-bottom: 1rem;
         font-size: 2rem;
     }
 
-    .userPage-heading p {
+    .profilePage-heading p {
         font-size: 1rem;
     }
 
-    .userPage-informations {
+    .profilePage-informations {
         position: absolute;
         bottom: 7vh;
         width: 95%;
