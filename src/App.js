@@ -18,11 +18,6 @@ function App() {
                 <Route path="/profile/user/:id" element={<ProfilePage />} />
                 <Route path="*" element={<Error404 />} />
             </Routes>
-
-            {/* <Route path="/" element={<Navigate to="/home" />} /> */}
-            {/* <Routes>
-                <Route path="/user/:id" element={<ProfilePage />} />
-            </Routes> */}
         </div>
     );
 }
