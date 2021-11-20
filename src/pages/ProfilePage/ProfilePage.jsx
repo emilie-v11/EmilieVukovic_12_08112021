@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './ProfilePage.css';
-import Energy from '../../assets/icons-keyData/energy.svg';
-import Chicken from '../../assets/icons-keyData/chicken.svg';
-import Apple from '../../assets/icons-keyData/apple.svg';
-import Cheeseburger from '../../assets/icons-keyData/cheeseburger.svg';
+import Calories from '../../assets/icons-keyData/calories-icon.png';
+import Protein from '../../assets/icons-keyData/protein-icon.png';
+import Carbs from '../../assets/icons-keyData/carbs-icon.png';
+import Fat from '../../assets/icons-keyData/fat-icon.png';
 import Loader from '../../components/Loader/Loader';
 import Error404 from '../Error404/Error404';
 // import { userData } from '../../mock/data.js';
@@ -43,7 +43,6 @@ const ProfilePage = () => {
             try {
                 const userInfos = await getUserInfos(id);
                 setUserId(userInfos.data.data);
-                console.log('userId', userInfos.data.data);
                 setUserInfos(userInfos.data.data.userInfos);
                 setTodayScore(
                     userInfos.data.data.todayScore || userInfos.data.data.score
@@ -59,6 +58,7 @@ const ProfilePage = () => {
                 const performance = await getUserPerformance(id);
                 setUserPerformance(performance.data.data.data);
 
+                // console.log('userId', userInfos.data.data);
                 // console.log('userInfos', userInfos.data.data.userInfos);
                 // console.log('todayScore', userInfos.data.data.todayScore);
                 // console.log('keyData', userInfos.data.data.keyData);
@@ -135,7 +135,8 @@ const ProfilePage = () => {
         // setIsLoading(false);
     }, [id]);
 
-    console.log(userId.id, id);
+    // console.log(userId.id, id);
+
     /* {!isLoading && (
     )}
     {!isLoading && error && <Error404 />}
@@ -180,33 +181,25 @@ const ProfilePage = () => {
 
                     <div className="keys-data-cards">
                         <KeyData
-                            style={{ background: 'rgba(255, 0, 0, 0.1)' }}
-                            src={Energy}
-                            altText={''}
+                            src={Calories}
                             count={keyData.calorieCount}
                             unit={'kCal'}
                             nutrientsType={'Calories'}
                         />
                         <KeyData
-                            style={{ background: 'rgba(74, 184, 255, 0.1)' }}
-                            src={Chicken}
-                            altText={''}
+                            src={Protein}
                             count={keyData.proteinCount}
                             unit={'g'}
                             nutrientsType={'Proteines'}
                         />
                         <KeyData
-                            style={{ background: 'rgba(249, 206, 35, 0.2)' }}
-                            src={Apple}
-                            altText={''}
+                            src={Carbs}
                             count={keyData.carbohydrateCount}
                             unit={'g'}
                             nutrientsType={'Glucides'}
                         />
                         <KeyData
-                            style={{ background: 'rgba(253, 81, 129, 0.1' }}
-                            src={Cheeseburger}
-                            altText={''}
+                            src={Fat}
                             count={keyData.lipidCount}
                             unit={'g'}
                             nutrientsType={'Lipides'}
