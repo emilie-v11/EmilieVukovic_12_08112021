@@ -74,9 +74,6 @@ const LineChartGraph = ({ userAverageSessions }) => {
                 <LineChart
                     data={dataAverageSessions}
                     margin={{ top: -30, right: -20, left: -20, bottom: -30 }}
-                    // margin={{ top: 70, right: -20, left: -20, bottom: 35 }}
-                    // width="100%"
-                    // height="100%"
                 >
                     <Line
                         type="monotone"
@@ -105,7 +102,6 @@ const LineChartGraph = ({ userAverageSessions }) => {
                     <Tooltip
                         content={<CustomToolTip />}
                         position={{ y: 120 }}
-                        // position="top"
                         wrapperStyle={{
                             color: '#000',
                             background: '#fff',
@@ -117,9 +113,7 @@ const LineChartGraph = ({ userAverageSessions }) => {
                             strokeWidth: 80,
                             position: 'right',
                         }}
-                        // viewBox={{x: 0, y: 0, width: 400, height: 400}}
                         allowEscapeViewBox={{ x: false, y: false }}
-                        // coordinate={{ x: 80, y: '300%' }}
                     />
                 </LineChart>
             </ResponsiveContainer>
