@@ -13,18 +13,19 @@ import {
     getUserActivity,
     getUserAverageSessions,
     getUserPerformance,
-} from '../../services/calls-API';
+} from '../../services/API/calls-API';
 import KeyData from '../../components/KeyData/KeyData';
-import RadarChartGraph from '../../components/RadarChartGraph/RadarChartGraph';
-import RadialBarChartGraph from '../../components/RadialBarChartGraph/RadialBarChartGraph';
+import RadarChartGraph from '../../components/Charts/RadarChartGraph/RadarChartGraph';
+import RadialBarChartGraph from '../../components/Charts/RadialBarChartGraph/RadialBarChartGraph';
+import LineChartGraph from '../../components/Charts/LineChartGraph/LineChartGraph';
 
 const ProfilePage = () => {
-    const [userId, setUserId] = useState(0);
+    // const [userId, setUserId] = useState(0);
     const [userInfos, setUserInfos] = useState({});
-    const [todayScore, setTodayScore] = useState(0);
+    const [todayScore, setTodayScore] = useState();
     const [keyData, setKeyData] = useState({});
     const [userActivity, setUserActivity] = useState({});
-    const [userAverageSessions, setUserAverageSessions] = useState({});
+    const [userAverageSessions, setUserAverageSessions] = useState([]);
     const [userPerformance, setUserPerformance] = useState([]);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -39,21 +40,20 @@ const ProfilePage = () => {
         setIsLoading(true);
         setError(false);
 
-        async function getProfileAllData() {
+        async function getProfilePageAllData() {
             try {
                 const userInfos = await getUserInfos(id);
-                setUserId(userInfos.data.data);
                 setUserInfos(userInfos.data.data.userInfos);
+                setKeyData(userInfos.data.data.keyData);
                 setTodayScore(
                     userInfos.data.data.todayScore || userInfos.data.data.score
                 );
-                setKeyData(userInfos.data.data.keyData);
 
                 const activity = await getUserActivity(id);
                 setUserActivity(activity.data.data);
 
                 const averageSessions = await getUserAverageSessions(id);
-                setUserAverageSessions(averageSessions.data.data);
+                setUserAverageSessions(averageSessions.data.data.sessions);
 
                 const performance = await getUserPerformance(id);
                 setUserPerformance(performance.data.data.data);
@@ -63,14 +63,17 @@ const ProfilePage = () => {
                 // console.log('todayScore', userInfos.data.data.todayScore);
                 // console.log('keyData', userInfos.data.data.keyData);
                 // console.log('activity', activity.data.data);
-                // console.log('averageSessions', averageSessions.data.data);
+                // console.log(
+                //     'averageSessions',
+                //     averageSessions.data.data.sessions
+                // );
                 // console.log('performance', performance.data.data.data);
             } catch (error) {
                 console.error('Error: profileAllData', error);
                 setError(true);
             }
         }
-        getProfileAllData();
+        getProfilePageAllData();
         setIsLoading(false);
 
         // async function getUserInfosData() {
@@ -167,7 +170,11 @@ const ProfilePage = () => {
                             <div className="bar-chart-graph">1</div>
                         </div>
                         <div className="trio-charts">
-                            <div className="line-chart-graph">2</div>
+                            <div className="line-chart-graph">
+                                <LineChartGraph
+                                    userAverageSessions={userAverageSessions}
+                                />
+                            </div>
                             <div className="radar-chart-graph">
                                 <RadarChartGraph
                                     userPerformance={userPerformance}
