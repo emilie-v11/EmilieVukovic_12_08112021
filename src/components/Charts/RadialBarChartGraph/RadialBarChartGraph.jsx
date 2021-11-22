@@ -7,14 +7,18 @@ import {
     RadialBar,
     PolarAngleAxis,
 } from 'recharts';
+import Unavailable from '../../Unavailable/Unavailable';
 
 const RadialBarChartGraph = ({ todayScore }) => {
+    if (!todayScore) {
+        return <Unavailable color="#74798c" />;
+    }
+
     const data = [
         {
             score: todayScore,
             // scorePercentage: todayScore * 100,
-            // scorePercentage: 1 * 100,
-            fill: '#FF0000',
+            // fill: '#FF0000',
         },
     ];
 
@@ -31,11 +35,15 @@ const RadialBarChartGraph = ({ todayScore }) => {
                 <RadialBarChart
                     cx="50%"
                     cy="50%"
+                    width="100%"
+                    height="100%"
                     innerRadius="71%"
-                    outerRadius="80%"
+                    outerRadius="90%"
+                    // innerRadius="60%"
+                    // outerRadius="85%"
                     barSize={10}
                     data={data}
-                    startAngle={80}
+                    startAngle={90}
                     endAngle={450}
                 >
                     <PolarAngleAxis
@@ -46,10 +54,11 @@ const RadialBarChartGraph = ({ todayScore }) => {
                     />
                     <RadialBar
                         minAngle={15}
+                        clockWise
                         // dataKey="scorePercentage"
                         dataKey="score"
-                        cornerRadius={50}
-                        clockWise
+                        fill="#FF0000"
+                        cornerRadius={10}
                     />
                 </RadialBarChart>
             </ResponsiveContainer>
@@ -59,10 +68,6 @@ const RadialBarChartGraph = ({ todayScore }) => {
 
 RadialBarChartGraph.propTypes = {
     todayScore: PropTypes.number,
-};
-
-RadialBarChartGraph.defaultProps = {
-    todayScore: 0,
 };
 
 export default RadialBarChartGraph;

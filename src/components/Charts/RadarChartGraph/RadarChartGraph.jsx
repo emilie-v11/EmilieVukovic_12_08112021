@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Unavailable from '../../Unavailable/Unavailable';
 import {
     Radar,
     RadarChart,
@@ -9,6 +10,11 @@ import {
 } from 'recharts';
 
 const RadarChartGraph = ({ userPerformance }) => {
+    
+    if (!userPerformance) {
+        return <Unavailable color="#fff" />;
+    }
+
     const userPerformanceArray = [...userPerformance];
 
     const dataPerformance = userPerformanceArray.reverse().map(value => {
