@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
-import './Navbar.css';
+import './MainNav.css';
 
-const Navbar = () => {
+const MainNav = () => {
     return (
         <nav className="nav-header">
             <Logo className="logo-header" />
@@ -47,4 +47,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default MainNav;
