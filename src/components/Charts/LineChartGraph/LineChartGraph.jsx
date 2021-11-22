@@ -96,7 +96,7 @@ const LineChartGraph = ({ userAverageSessions }) => {
                     />
                     <YAxis
                         dataKey="sessionLength"
-                        domain={[-50, 'dataMax + 100']}
+                        domain={[-40, 'dataMax + 60']}
                         hide={true}
                     />
                     <Tooltip
