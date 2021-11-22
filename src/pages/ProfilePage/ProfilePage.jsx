@@ -7,24 +7,23 @@ import Carbs from '../../assets/icons-keyData/carbs-icon.png';
 import Fat from '../../assets/icons-keyData/fat-icon.png';
 import Loader from '../../components/Loader/Loader';
 import Error404 from '../Error404/Error404';
-// import { userData } from '../../mock/data.js';
+import KeyData from '../../components/KeyData/KeyData';
+import RadarChartGraph from '../../components/Charts/RadarChartGraph/RadarChartGraph';
+import RadialBarChartGraph from '../../components/Charts/RadialBarChartGraph/RadialBarChartGraph';
+import LineChartGraph from '../../components/Charts/LineChartGraph/LineChartGraph';
+import BarChartGraph from '../../components/Charts/BarChartGraph/BarChartGraph';
 import {
     getUserInfos,
     getUserActivity,
     getUserAverageSessions,
     getUserPerformance,
 } from '../../services/API/calls-API';
-import KeyData from '../../components/KeyData/KeyData';
-import RadarChartGraph from '../../components/Charts/RadarChartGraph/RadarChartGraph';
-import RadialBarChartGraph from '../../components/Charts/RadialBarChartGraph/RadialBarChartGraph';
-import LineChartGraph from '../../components/Charts/LineChartGraph/LineChartGraph';
 
 const ProfilePage = () => {
-    // const [userId, setUserId] = useState(0);
     const [userInfos, setUserInfos] = useState({});
     const [todayScore, setTodayScore] = useState();
     const [keyData, setKeyData] = useState({});
-    const [userActivity, setUserActivity] = useState({});
+    const [userActivity, setUserActivity] = useState([]);
     const [userAverageSessions, setUserAverageSessions] = useState([]);
     const [userPerformance, setUserPerformance] = useState([]);
 
@@ -32,9 +31,6 @@ const ProfilePage = () => {
     const [error, setError] = useState(null);
 
     const { id } = useParams();
-
-    // console.log(id);
-    // console.log(userActivity, userAverageSessions, isLoading, error);
 
     useEffect(() => {
         setIsLoading(true);
@@ -50,7 +46,7 @@ const ProfilePage = () => {
                 );
 
                 const activity = await getUserActivity(id);
-                setUserActivity(activity.data.data);
+                setUserActivity(activity.data.data.sessions);
 
                 const averageSessions = await getUserAverageSessions(id);
                 setUserAverageSessions(averageSessions.data.data.sessions);
@@ -62,7 +58,7 @@ const ProfilePage = () => {
                 // console.log('userInfos', userInfos.data.data.userInfos);
                 // console.log('todayScore', userInfos.data.data.todayScore);
                 // console.log('keyData', userInfos.data.data.keyData);
-                // console.log('activity', activity.data.data);
+                // console.log('activity', activity.data.data.sessions);
                 // console.log(
                 //     'averageSessions',
                 //     averageSessions.data.data.sessions
@@ -138,14 +134,7 @@ const ProfilePage = () => {
         // setIsLoading(false);
     }, [id]);
 
-    // console.log(userId.id, id);
-
-    /* {!isLoading && (
-    )}
-    {!isLoading && error && <Error404 />}
-    {isLoading && <p>Loading...</p>} */
-
-    if ((!isLoading && error) || id === undefined) {
+    if ((!isLoading && error) || id === undefined || setError === true) {
         return <Error404 />;
     } else if (isLoading) {
         return <Loader />;
@@ -167,7 +156,9 @@ const ProfilePage = () => {
                 <div className="profilePage-informations">
                     <div className="profilePage-graphs">
                         <div className="day-activity">
-                            <div className="bar-chart-graph">1</div>
+                            <div className="bar-chart-graph">
+                                <BarChartGraph userActivity={userActivity} />
+                            </div>
                         </div>
                         <div className="trio-charts">
                             <div className="line-chart-graph">
