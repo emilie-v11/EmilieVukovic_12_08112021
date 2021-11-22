@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './SwitchUsers.css';
-import { userData } from '../../mock/data';
+import { userData } from '../../services/mock/data';
 
 const SwitchUsers = () => {
     return (

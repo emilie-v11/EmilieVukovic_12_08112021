@@ -1,6 +1,6 @@
 import React from 'react';
 // import { NavLink } from 'react-router-dom';
-import ButtonIcon from '../ButtonIcon/ButtonIcon';
+import ButtonIcon from './ButtonIcon/ButtonIcon';
 import MeditationIcon from '../../assets/icons-NavIcon/meditation-icon.svg';
 import SwimmingIcon from '../../assets/icons-NavIcon/swimming-icon.svg';
 import CyclingIcon from '../../assets/icons-NavIcon/cycling-icon.svg';
