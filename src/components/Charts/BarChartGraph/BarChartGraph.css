@@ -36,15 +36,18 @@
 
 .recharts-default-legend {
     position: absolute;
-    top: -56px;
-    right: 0;
-    font-size: 0.9rem;
+    top: -86px;
+    right: -20px;
+    font-size: 0.875rem;
     /* !important */
     color: #74798c;
-    /* !important */
 }
 
 .recharts-legend-item.legend-item-1,
 .recharts-legend-item.legend-item-0 {
     color: #74798c;
+}
+
+.recharts-tooltip-cursor {
+    width: 45px;
 }

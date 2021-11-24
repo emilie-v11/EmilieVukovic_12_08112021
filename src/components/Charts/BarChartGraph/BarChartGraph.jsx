@@ -28,19 +28,21 @@ const BarChartGraph = ({ userActivity }) => {
     // console.log(newData);
 
     const newData = [];
-    for (let element of userActivityArray) {
-        const [yyyy, mm, dd] = element.day.split('-');
+    for (let datum of userActivityArray) {
+        const [yyyy, mm, dd] = datum.day.split('-');
+        console.log('prev', userActivityArray);
 
         newData.push({
-            day: `${dd}/${mm}`,
-            kilogram: element.kilogram,
-            calories: element.calories,
+            // day: `${dd}/${mm}`,
+            day: `${dd}`,
+            kilogram: datum.kilogram,
+            calories: datum.calories,
         });
     }
 
-    // console.log(newData);
+    console.log('post', newData);
 
-    const CustomToolTip = ({ active, payload, label }) => {
+    const CustomToolTip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             return (
                 <div className="custom-tooltip">
@@ -60,7 +62,7 @@ const BarChartGraph = ({ userActivity }) => {
             <ResponsiveContainer width={'100%'} height={'100%'}>
                 <BarChart
                     data={newData}
-                    margin={{ top: 80, right: 48, bottom: 32, left: 48 }}
+                    margin={{ top: 110, right: 48, bottom: 32, left: 48 }}
                     barGap={8}
                     barCategoryGap="35%"
                 >
@@ -83,12 +85,13 @@ const BarChartGraph = ({ userActivity }) => {
                         orientation="right"
                         // yAxisId="kg"
                         dataKey="kilogram"
-                        domain={['dataMin - 1', 'dataMax + 2']}
+                        domain={['dataMin - 1', 'dataMax + 1']}
                         allowDecimals={false}
-                        dx={48}
+                        dx={45}
                         stroke="#9b9eac"
                         axisLine={false}
                         tickLine={false}
+                        // padding={{top: 50,}}
                     />
                     <YAxis
                         yAxisId="cal"
@@ -96,7 +99,11 @@ const BarChartGraph = ({ userActivity }) => {
                         domain={[0, 'dataMax + 50']}
                         hide={true}
                     />
-                    <Tooltip content={<CustomToolTip />} position={{ y: 50 }} />
+                    <Tooltip
+                        content={<CustomToolTip />}
+                        position={{ y: 80 }}
+                        cursor={{ strokeWidth: 55 }}
+                    />
                     <Legend
                         verticalAlign="top"
                         align="right"
@@ -119,7 +126,7 @@ const BarChartGraph = ({ userActivity }) => {
                         yAxisId="cal"
                         name="Calories brûlées (kCal)"
                         dataKey="calories"
-                        maxBarSize={8}
+                        maxBarSize={7}
                         fill="#E60000"
                         radius={[10, 10, 0, 0]}
                     />
