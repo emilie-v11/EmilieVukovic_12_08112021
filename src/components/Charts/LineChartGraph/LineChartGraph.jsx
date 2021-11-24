@@ -78,7 +78,7 @@ const LineChartGraph = ({ userAverageSessions }) => {
                     <Line
                         type="monotone"
                         dataKey="sessionLength"
-                        stroke="rgba(255, 255, 255, 0.8)"
+                        stroke="rgba(255, 255, 255, 0.6)"
                         strokeWidth={2}
                         dot={false}
                         activeDot={{ stroke: '#FF0000', r: 5, strokeWidth: 0 }}
@@ -110,7 +110,7 @@ const LineChartGraph = ({ userAverageSessions }) => {
                         }}
                         cursor={{
                             stroke: 'rgba(0, 0, 0, 0.1)',
-                            strokeWidth: 80,
+                            strokeWidth: 62,
                             position: 'right',
                         }}
                         allowEscapeViewBox={{ x: false, y: false }}
@@ -121,6 +121,8 @@ const LineChartGraph = ({ userAverageSessions }) => {
     );
 };
 
-LineChartGraph.propTypes = {};
+LineChartGraph.propTypes = {
+    userAverageSessions: PropTypes.array,
+};
 
 export default LineChartGraph;
