@@ -27,7 +27,7 @@ const RadialBarChartGraph = ({ todayScore }) => {
             <div className="legend-container">
                 <span className="score-heading">{`Score`}</span>
                 <div className="legend-content">
-                    <p className="score-number">{todayScore * 100}%</p>
+                    <p className="score-number">{data[0].score * 100}%</p>
                     <p className="goal-text">de votre objectif</p>
                 </div>
             </div>
