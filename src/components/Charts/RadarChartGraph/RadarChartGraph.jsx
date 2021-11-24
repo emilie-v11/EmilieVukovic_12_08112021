@@ -39,8 +39,6 @@ const RadarChartGraph = ({ userPerformance }) => {
     return (
         <ResponsiveContainer width="100%" height="100%">
             <RadarChart
-                // cx="50%"
-                // cy="50%"
                 data={dataPerformance}
                 outerRadius={window.innerWidth > 1340 ? '70%' : '60%'}
             >
@@ -51,7 +49,6 @@ const RadarChartGraph = ({ userPerformance }) => {
                     tickLine={false}
                     tickSize={10}
                     fontSize={12}
-                    // tick={customTick}
                 />
                 <Radar
                     dataKey="value"
