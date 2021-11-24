@@ -71,67 +71,6 @@ const ProfilePage = () => {
         }
         getProfilePageAllData();
         setIsLoading(false);
-
-        // async function getUserInfosData() {
-        //     try {
-        //         const response = await getUserInfos(id);
-        //         setUserInfos(response.data.data.userInfos);
-        //         setTodayScore(
-        //             response.data.data.todayScore || response.data.data.score
-        //         );
-        //         setKeyData(response.data.data.keyData);
-        //         console.log('userInfos', response.data.data.userInfos);
-        //         console.log(
-        //             'todayScore',
-        //             response.data.data.todayScore,
-        //             response.data.data.score
-        //         );
-        //         console.log('keyData', response.data.data.keyData);
-        //     } catch (error) {
-        //         console.error('Error: userInfos', error);
-        //         setError(true);
-        //     }
-        // }
-
-        // async function getUserActivityData() {
-        //     try {
-        //         const response = await getUserActivity(id);
-        //         console.log('activity', response.data.data);
-        //         setUserActivity(response.data.data);
-        //     } catch (error) {
-        //         console.error('Error: activity', error);
-        //         setError(true);
-        //     }
-        // }
-
-        // async function getUserAverageSessionsData() {
-        //     try {
-        //         const response = await getUserAverageSessions(id);
-        //         console.log('averageSessions', response.data.data);
-        //         setUserAverageSessions(response.data.data);
-        //     } catch (error) {
-        //         console.error('Error: averageSessions', error);
-        //         setError(true);
-        //     }
-        // }
-
-        // async function getUserPerformanceData() {
-        //     try {
-        //         const response = await getUserPerformance(id);
-        //         console.log('performance', response.data.data.data);
-        //         setUserPerformance(response.data.data.data);
-        //     } catch (error) {
-        //         console.error('Error: performance', error);
-        //         setError(true);
-        //     }
-        // }
-
-        // getUserInfosData();
-        // getUserActivityData();
-        // getUserAverageSessionsData();
-        // getUserPerformanceData();
-
-        // setIsLoading(false);
     }, [id]);
 
     if ((!isLoading && error) || id === undefined || setError === true) {
