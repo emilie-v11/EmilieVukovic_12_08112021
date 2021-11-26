@@ -3,9 +3,8 @@ import { NavLink } from 'react-router-dom';
 import './SwitchUsers.css';
 import { userData } from '../../services/mock/data';
 
-/** This is a temporary page, it replaces the unavailable Connection function.
- * It allows you to switch from one user to another while waiting.
- *
+/**
+ * @description This is a temporary page, it replaces the unavailable Connection function. It allows you to switch from one user to another while waiting.
  * @type {Function} SwitchUsers - Functional component
  * @returns {ReactElement} SwitchUsers
  */

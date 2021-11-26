@@ -7,8 +7,9 @@ import WeightIcon from '../../assets/icons-NavIcon/weight-icon.svg';
 import './NavIcons.css';
 
 /**
+ * @description Secondary menu navigation
  * @type {Function} NavIcons - Functional component
- * @returns {ReactElement} NavIcons, secondary menu navigation
+ * @returns {ReactElement} NavIcons component
  */
 const NavIcons = () => {
     return (

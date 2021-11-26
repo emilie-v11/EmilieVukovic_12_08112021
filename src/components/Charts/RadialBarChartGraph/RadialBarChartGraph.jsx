@@ -9,13 +9,15 @@ import {
 } from 'recharts';
 import Unavailable from '../../Unavailable/Unavailable';
 
-/** http://localhost:3000/user/${id}
+/** 
+ // http://localhost:3000/user/${id}
+ * @description RadarChartGraph with Recharts contain the array's data
  * @type {Function} RadarChartGraph - Functional component
  * @param {number} todayScore - decimal number between 0 and 1, percentage of completion of the goal
- * @returns {ReactElement} RadarChart Graph with Recharts contain the array's data.
+ * @returns {ReactElement} RadarChart
  *
- * Props : Erreur in Backend API different name for the same property
- * for user id: 12 : todayscore, for user id: 18 : score
+ // Props : Erreur in Backend API different name for the same property
+ // for user id: 12 : todayscore, for user id: 18 : score
  * @property {number} todayScore || @property {number} score
  */
 

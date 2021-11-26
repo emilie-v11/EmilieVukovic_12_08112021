@@ -13,12 +13,14 @@ import {
     Bar,
 } from 'recharts';
 
-/** http://localhost:3000/user/${id}/activity
+/** 
+ // http://localhost:3000/user/${id}/activity
+ * @description BarChart Graph with Recharts contain the array's data.
  * @type {Function} BarChartGraph - Functional component
  * @param {array} userActivity - weight & calories of each day of the week.
- * @returns {ReactElement} BarChart Graph with Recharts contain the array's data.
+ * @returns {ReactElement} BarChart
  *
- * Props : Array of object 'userActivity':
+ // Props : Array of object 'userActivity':
  * @typedef {Object} Sessions
  * @property {string} day
  * @property {number} kilogram

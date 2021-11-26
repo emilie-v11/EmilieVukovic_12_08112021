@@ -9,12 +9,14 @@ import {
     ResponsiveContainer,
 } from 'recharts';
 
-/** http://localhost:3000/user/${id}/performance
+/**
+ // http://localhost:3000/user/${id}/performance
+ * @description RadarChartGraph with Recharts contain the array's data
  * @type {Function} RadarChartGraph - Functional component
  * @param {array} userPerformance - value & kind.
- * @returns {ReactElement} RadarChart Graph with Recharts contain the array's data.
+ * @returns {ReactElement} RadarChart
  * 
- * Props : Array of object 'userPerformance':
+ // Props : Array of object 'userPerformance':
  * @typeof {array} data
  * @property {number} value
  * @property {number} kind
