@@ -14,7 +14,6 @@ function App() {
             <Routes>
                 <Route path="/" element={<Navigate to="/profile" />} />
                 <Route path="/profile" element={<SwitchUsers />} />
-                {/* <Route path="/profile" element={<ProfilePage />} /> */}
                 <Route path="/profile/user/:id" element={<ProfilePage />} />
                 <Route path="*" element={<Error404 />} />
             </Routes>
