@@ -13,35 +13,52 @@ import {
     Bar,
 } from 'recharts';
 
-const BarChartGraph = ({ userActivity }) => {
-    const userActivityArray = [...userActivity];
-    // console.log(userActivityArray);
+/** http://localhost:3000/user/${id}/activity
+ * @type {Function} BarChartGraph - Functional component
+ * @param {array} userActivity - weight & calories of each day of the week.
+ * @returns {ReactElement} BarChart Graph with Recharts contain the array's data.
+ *
+ * Props : Array of object 'userActivity':
+ * @typedef {Object} Sessions
+ * @property {string} day
+ * @property {number} kilogram
+ * @property {number} calories
+ */
 
+const BarChartGraph = ({ userActivity }) => {
+    //if data's props aren't available, return 'Unvailable' component in place of Graph
     if (!userActivity) {
         return <Unavailable />;
     }
 
-    // const newData = userActivityArray.map(datum => ({
-    //     number: userActivityArray.indexOf(datum) + 1,
-    //     ...datum,
-    // }));
-    // console.log(newData);
+    // Duplicate array before modified array's data
+    const userActivityArray = [...userActivity];
 
+    /** Change the type of 'day', for the requested format's design. ("2020-07-01" => 1), keep just the day's data (dd) & without the first useless zero.
+     * @param {array.object} userActivityArray
+     * @returns {array.object} newData
+     */
+    // create new empty array
     const newData = [];
+    // loop in every object of the array 'userActivityArray'
     for (let datum of userActivityArray) {
-        const [yyyy, mm, dd] = datum.day.split('-');
-        console.log('prev', userActivityArray);
+        // Remove '-' & changes the date's type, string => number. the useless zero disapear. 01 => 1, 02 => 2 ...
+        const [yyyy, mm, dd] = datum.day.split('-').map(Number); //other method : .map(x => +x)
 
+        // Push the modified data in the 'newData' array and add the other data not modified.
         newData.push({
-            // day: `${dd}/${mm}`,
-            day: `${dd}`,
+            //day: dd, // for keep it in Number format
+            day: `${dd}`, // or for keep it in string format
             kilogram: datum.kilogram,
             calories: datum.calories,
         });
     }
 
-    console.log('post', newData);
-
+    /** Customize the Tooltip with content
+     * @param {boolean} active - if active, display the tooltip
+     * @param {object} payload - The source data of the content to be displayed in the tooltip.
+     * @returns {ReactElement}
+     */
     const CustomToolTip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             return (
@@ -69,11 +86,9 @@ const BarChartGraph = ({ userActivity }) => {
                     <CartesianGrid
                         strokeDasharray="3 3"
                         vertical={false}
-                        // stroke={{ color: "#dedede" }}
                         style={{ border: '1px solid #DEDEDE', opacity: 0.6 }}
                     />
                     <XAxis
-                        // dataKey="number"
                         dataKey="day"
                         dy={16}
                         padding={{ left: -48, right: -48 }}
@@ -83,7 +98,6 @@ const BarChartGraph = ({ userActivity }) => {
                     />
                     <YAxis
                         orientation="right"
-                        // yAxisId="kg"
                         dataKey="kilogram"
                         domain={['dataMin - 1', 'dataMax + 1']}
                         allowDecimals={false}
@@ -91,7 +105,6 @@ const BarChartGraph = ({ userActivity }) => {
                         stroke="#9b9eac"
                         axisLine={false}
                         tickLine={false}
-                        // padding={{top: 50,}}
                     />
                     <YAxis
                         yAxisId="cal"

@@ -9,30 +9,43 @@ import {
     ResponsiveContainer,
 } from 'recharts';
 
+/** http://localhost:3000/user/${id}/performance
+ * @type {Function} RadarChartGraph - Functional component
+ * @param {array} userPerformance - value & kind.
+ * @returns {ReactElement} RadarChart Graph with Recharts contain the array's data.
+ * 
+ * Props : Array of object 'userPerformance':
+ * @typeof {array} data
+ * @property {number} value
+ * @property {number} kind
+ */
+
 const RadarChartGraph = ({ userPerformance }) => {
-    
+    //if data's props aren't available, return 'Unvailable' component in place of Graph
     if (!userPerformance) {
         return <Unavailable color="#fff" />;
     }
-
+    // Duplicate array before modified array's data
     const userPerformanceArray = [...userPerformance];
 
-    const dataPerformance = userPerformanceArray.reverse().map(value => {
-        switch (value.kind) {
+    // Add a property 'activity' for each kind of object in array.
+    // & reverse the order of kind for respect the design mock-up.
+    const dataPerformance = userPerformanceArray.reverse().map(data => {
+        switch (data.kind) {
             case 1:
-                return { activity: 'Cardio', ...value };
+                return { activity: 'Cardio', ...data };
             case 2:
-                return { activity: 'Energie', ...value };
+                return { activity: 'Energie', ...data };
             case 3:
-                return { activity: 'Endurance', ...value };
+                return { activity: 'Endurance', ...data };
             case 4:
-                return { activity: 'Force', ...value };
+                return { activity: 'Force', ...data };
             case 5:
-                return { activity: 'Vitesse', ...value };
+                return { activity: 'Vitesse', ...data };
             case 6:
-                return { activity: 'Intensité', ...value };
+                return { activity: 'Intensité', ...data };
             default:
-                return { ...value };
+                return { ...data };
         }
     });
 
@@ -61,7 +74,7 @@ const RadarChartGraph = ({ userPerformance }) => {
 };
 
 RadarChartGraph.propTypes = {
-    dataPerformance: PropTypes.array,
+    userPerformance: PropTypes.array,
 };
 
 export default RadarChartGraph;

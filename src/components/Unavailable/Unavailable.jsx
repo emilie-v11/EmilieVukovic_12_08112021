@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * @type {Function} Unavailable - Functional component
+ * @param {string} color
+ * @returns {ReactElement} Unavailable, is displayed when data isn't available, the rest of the page can be display
+ */
 const Unavailable = ({ color }) => {
     return (
         <div

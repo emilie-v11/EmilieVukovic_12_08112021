@@ -9,7 +9,18 @@ import {
 } from 'recharts';
 import Unavailable from '../../Unavailable/Unavailable';
 
+/** http://localhost:3000/user/${id}
+ * @type {Function} RadarChartGraph - Functional component
+ * @param {number} todayScore - decimal number between 0 and 1, percentage of completion of the goal
+ * @returns {ReactElement} RadarChart Graph with Recharts contain the array's data.
+ *
+ * Props : Erreur in Backend API different name for the same property
+ * for user id: 12 : todayscore, for user id: 18 : score
+ * @property {number} todayScore || @property {number} score
+ */
+
 const RadialBarChartGraph = ({ todayScore }) => {
+    //if data's props aren't available, return 'Unvailable' component in place of Graph
     if (!todayScore) {
         return <Unavailable color="#74798c" />;
     }
@@ -18,7 +29,6 @@ const RadialBarChartGraph = ({ todayScore }) => {
         {
             score: todayScore,
             // scorePercentage: todayScore * 100,
-            // fill: '#FF0000',
         },
     ];
 
@@ -39,8 +49,6 @@ const RadialBarChartGraph = ({ todayScore }) => {
                     height="100%"
                     innerRadius="71%"
                     outerRadius="90%"
-                    // innerRadius="60%"
-                    // outerRadius="85%"
                     barSize={10}
                     data={data}
                     startAngle={90}
@@ -55,7 +63,6 @@ const RadialBarChartGraph = ({ todayScore }) => {
                     <RadialBar
                         minAngle={15}
                         clockWise
-                        // dataKey="scorePercentage"
                         dataKey="score"
                         fill="#FF0000"
                         cornerRadius={10}

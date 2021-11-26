@@ -11,49 +11,71 @@ import {
 import './LineChartGraph.css';
 import Unavailable from '../../Unavailable/Unavailable';
 
+/** http://localhost:3000/user/${id}/average-sessions
+ * @type {Function} LineChartGraph - Functional component
+ * @param {array} userAverageSessions - day & sessionLength of each day of the week.
+ * @returns {ReactElement} LineChartGraph with Recharts contain the array's data.
+ * 
+ *  Props : Array of object 'userAverageSessions':
+ * @typedef {Object} Sessions
+ * @property {number} day
+ * @property {number} sessionLength
+ */
+
 const LineChartGraph = ({ userAverageSessions }) => {
+    //if data's props aren't available, return 'Unvailable' component in place of Graph
     if (!userAverageSessions) {
         return <Unavailable color="#fff" />;
     }
 
+    // Duplicate array before modified array's data
     const userAverageSessionsArray = [...userAverageSessions];
 
-    const prevday = {
+    // Add 2 data at first & last place to array to reach the horizontal border of the graphic as requested on the design mock-up
+    const prevDay = {
         day: 0,
         sessionLength: 0,
     };
-    const nextday = {
+    const nextDay = {
         day: 8,
         sessionLength: 100,
     };
-    userAverageSessionsArray.unshift(prevday);
-    userAverageSessionsArray.push(nextday);
+    // return prevDay in first place of the array
+    userAverageSessionsArray.unshift(prevDay);
+    // return nextDay in last place of the array
+    userAverageSessionsArray.push(nextDay);
 
-    const dataAverageSessions = userAverageSessionsArray.map(sessionLength => {
-        switch (sessionLength.day) {
+    // Add a property 'firstLetterDay' @type {string} for letters in bottom of graph
+    const dataAverageSessions = userAverageSessionsArray.map(data => {
+        switch (data.day) {
             case 0:
-                return { firstLetterDay: '', ...sessionLength };
+                return { firstLetterDay: '', ...data };
             case 1:
-                return { firstLetterDay: 'L', ...sessionLength };
+                return { firstLetterDay: 'L', ...data };
             case 2:
-                return { firstLetterDay: 'M', ...sessionLength };
+                return { firstLetterDay: 'M', ...data };
             case 3:
-                return { firstLetterDay: 'M', ...sessionLength };
+                return { firstLetterDay: 'M', ...data };
             case 4:
-                return { firstLetterDay: 'J', ...sessionLength };
+                return { firstLetterDay: 'J', ...data };
             case 5:
-                return { firstLetterDay: 'V', ...sessionLength };
+                return { firstLetterDay: 'V', ...data };
             case 6:
-                return { firstLetterDay: 'S', ...sessionLength };
+                return { firstLetterDay: 'S', ...data };
             case 7:
-                return { firstLetterDay: 'D', ...sessionLength };
+                return { firstLetterDay: 'D', ...data };
             case 8:
-                return { firstLetterDay: '', ...sessionLength };
+                return { firstLetterDay: '', ...data };
             default:
-                return { ...sessionLength };
+                return { ...data };
         }
     });
 
+    /** Customize the Tooltip with content
+     * @param {boolean} active - if active, display the tooltip
+     * @param {object} payload - The source data of the content to be displayed in the tooltip.
+     * @returns {ReactElement}
+     */
     const CustomToolTip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             return (

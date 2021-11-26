@@ -2,6 +2,22 @@ import React from 'react';
 import './KeyData.css';
 import PropTypes from 'prop-types';
 
+/** http://localhost:3000/user/${id}
+ * @type {Function} KeyData - Functional component
+ * @param {string} src - url for image
+ * @param {number} count - number of quantity
+ * @param {string} unit - unit (kg, kcal...)
+ * @param {string} nutrientsType - type of nutrients (protein,carbohydrat...)
+ * @returns {ReactElement} card with kcal & nutrients informations
+ *
+ * Props : Object with 4 properties
+ * @typedef {Object} KeyData
+ * @property {number} calorieCount
+ * @property {number} proteinCount
+ * @property {number} carbohydrateCount
+ * @property {number} lipidCount
+ */
+
 const KeyData = ({ src, count, unit, nutrientsType }) => {
     return (
         <div className="keys-data-card">

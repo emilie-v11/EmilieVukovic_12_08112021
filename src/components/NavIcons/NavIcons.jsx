@@ -1,5 +1,4 @@
 import React from 'react';
-// import { NavLink } from 'react-router-dom';
 import ButtonIcon from './ButtonIcon/ButtonIcon';
 import MeditationIcon from '../../assets/icons-NavIcon/meditation-icon.svg';
 import SwimmingIcon from '../../assets/icons-NavIcon/swimming-icon.svg';
@@ -7,6 +6,10 @@ import CyclingIcon from '../../assets/icons-NavIcon/cycling-icon.svg';
 import WeightIcon from '../../assets/icons-NavIcon/weight-icon.svg';
 import './NavIcons.css';
 
+/**
+ * @type {Function} NavIcons - Functional component
+ * @returns {ReactElement} NavIcons, secondary menu navigation
+ */
 const NavIcons = () => {
     return (
         <nav className="nav-icons">

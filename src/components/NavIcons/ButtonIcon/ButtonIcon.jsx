@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 import './ButtonIcon.css';
 
 /**
- *
+ * @type {Function} ButtonIcon - Functional component
+ * @param {string} path - link, direction when is clicked
+ * @param {string} imgSrc - image's URL
+ * @param {string} altText - image's alt, description for screen reader
+ * @returns {ReactElement} secondary menu navigation button in NavIcons
  */
-
 const ButtonIcon = ({ path, imgSrc, altText }) => {
     return (
         <NavLink
