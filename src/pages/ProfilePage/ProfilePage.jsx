@@ -27,15 +27,20 @@ const ProfilePage = () => {
     const [userAverageSessions, setUserAverageSessions] = useState([]);
     const [userPerformance, setUserPerformance] = useState([]);
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const { id } = useParams();
 
     useEffect(() => {
-        setIsLoading(true);
-        setError(false);
+        // setIsLoading(true);
+        // setError(false);
 
+        /**
+         * @description
+         * @async
+         * @type {Function} getProfilePageAllData
+         */
         async function getProfilePageAllData() {
             try {
                 const userInfos = await getUserInfos(id);
@@ -53,24 +58,13 @@ const ProfilePage = () => {
 
                 const performance = await getUserPerformance(id);
                 setUserPerformance(performance.data.data.data);
-
-                // console.log('userId', userInfos.data.data);
-                // console.log('userInfos', userInfos.data.data.userInfos);
-                // console.log('todayScore', userInfos.data.data.todayScore);
-                // console.log('keyData', userInfos.data.data.keyData);
-                // console.log('activity', activity.data.data.sessions);
-                // console.log(
-                //     'averageSessions',
-                //     averageSessions.data.data.sessions
-                // );
-                // console.log('performance', performance.data.data.data);
             } catch (error) {
                 console.error('Error: profileAllData', error);
                 setError(true);
             }
+            setIsLoading(false);
         }
         getProfilePageAllData();
-        setIsLoading(false);
     }, [id]);
 
     if ((!isLoading && error) || id === undefined || setError === true) {
