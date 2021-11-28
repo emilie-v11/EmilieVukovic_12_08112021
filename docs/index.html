@@ -44,40 +44,75 @@
 
     <section>
         <article><h1>PROJECT 12: SPORTSEE - Frontend</h1>
-<p>This project was bootstrapped with <a href="https://github.com/facebook/create-react-app">Create React App</a>.</p>
-<h2>Available Scripts</h2>
-<p>In the project directory, you can run:</p>
-<h3><code>yarn start</code></h3>
-<p>Runs the app in the development mode.<br>
-Open <a href="http://localhost:3000">http://localhost:3000</a> to view it in the browser.</p>
-<p>The page will reload if you make edits.<br>
-You will also see any lint errors in the console.</p>
-<h3><code>yarn build</code></h3>
-<p>Builds the app for production to the <code>build</code> folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.</p>
-<p>The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!</p>
-<p>See the section about <a href="https://facebook.github.io/create-react-app/docs/deployment">deployment</a> for more information.</p>
-<h3><code>yarn eject</code></h3>
-<p><strong>Note: this is a one-way operation. Once you <code>eject</code>, you can’t go back!</strong></p>
-<p>If you aren’t satisfied with the build tool and configuration choices, you can <code>eject</code> at any time. This command will remove the single build dependency from your project.</p>
-<p>Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except <code>eject</code> will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.</p>
-<p>You don’t have to ever use <code>eject</code>. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.</p>
-<h2>Learn More</h2>
-<p>You can learn more in the <a href="https://facebook.github.io/create-react-app/docs/getting-started">Create React App documentation</a>.</p>
-<p>To learn React, check out the <a href="https://reactjs.org/">React documentation</a>.</p>
-<h3>Code Splitting</h3>
-<p>This section has moved here: <a href="https://facebook.github.io/create-react-app/docs/code-splitting">https://facebook.github.io/create-react-app/docs/code-splitting</a></p>
-<h3>Analyzing the Bundle Size</h3>
-<p>This section has moved here: <a href="https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size">https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size</a></p>
-<h3>Making a Progressive Web App</h3>
-<p>This section has moved here: <a href="https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app">https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app</a></p>
-<h3>Advanced Configuration</h3>
-<p>This section has moved here: <a href="https://facebook.github.io/create-react-app/docs/advanced-configuration">https://facebook.github.io/create-react-app/docs/advanced-configuration</a></p>
-<h3>Deployment</h3>
-<p>This section has moved here: <a href="https://facebook.github.io/create-react-app/docs/deployment">https://facebook.github.io/create-react-app/docs/deployment</a></p>
-<h3><code>yarn build</code> fails to minify</h3>
-<p>This section has moved here: <a href="https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify">https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify</a></p></article>
+<p>Develop an analytics dashboard with React. Build the new profile page for users. Use Fetch or Axios to get the data from a NodeJS server.</p>
+<ul>
+<li><a href="https://www.figma.com/file/BMomGVZqLZb811mDMShpLu/UI-design-Sportify-FR?node-id=0%3A1">Mock-up</a>, Figma.</li>
+<li><a href="https://www.notion.so/Tableau-de-bord-SportSee-6686aa4b5f44417881a4884c9af5669e">Kanban</a>, Notion, with the 15 User Stories.</li>
+</ul>
+<h2>1. Dependencies</h2>
+<ul>
+<li><a href="https://reactjs.org/">react</a> v17.0.2</li>
+<li><a href="https://reactrouter.com/web/guides/quick-start">react-router-dom</a> v6.0.1</li>
+<li><a href="https://yarnpkg.com/package/axios">axios</a> v0.24.0</li>
+<li><a href="https://yarnpkg.com/package/prop-types">prop-types</a> v15.7.2</li>
+<li><a href="https://recharts.org/en-US">recharts</a> v2.1.6</li>
+<li><a href="https://yarnpkg.com/package/jsdoc">jsDoc</a> v3.6.7</li>
+<li>Recommended text editor: <a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+</ul>
+<h3>Installation Dependencies</h3>
+<ul>
+<li>You need <a href="https://git-scm.com/">Git</a> to clone the repository</li>
+<li>You need <a href="https://nodejs.org/en/">NodeJS</a> (v14.15.5) to run the <code>npm</code> commands</li>
+</ul>
+<h2>2. Getting started</h2>
+<h3>First, install the backend (micro API)</h3>
+<ul>
+<li>Fork this <a href="https://github.com/emilie-v11/P12_SportSee_Backend-API">repository</a> on your computer.</li>
+<li>Clone it on your computer.</li>
+<li>The <code>yarn install</code> command will allow you to install the dependencies.</li>
+<li>The <code>yarn start</code> command will allow you to run the micro API (automatically on port 3000).</li>
+</ul>
+<h3>Secondly, install the Frontend (this project)</h3>
+<ul>
+<li>Clone the project to your computer (in the same folder as the backend):
+<code>git clone https://github.com/emilie-v11/EmilieVukovic_12_08112021</code></li>
+<li>Go to the project folder:
+<code>cd EmilieVukovic_12_08112021</code></li>
+<li>The <code>yarn install</code> command will allow you to install the dependencies.</li>
+<li>The <code>yarn start</code> command will allow you to run the project (automatically on port 3001).</li>
+</ul>
+<h3>Then Magic happens ...</h3>
+<ul>
+<li>Open <a href="http://localhost:3001">http://localhost:3001</a> to view it in the browser.</li>
+</ul>
+<h2>3. Temporary Navigation on the web application</h2>
+<p>The only active part of the web application is the Profile Page. The other navigation buttons are disabled.
+There are 2 ways to navigate at the moment: through the &quot;Profile&quot; navigation button and the Switch users page or by URL directly.
+Choose yours, or try both 😉 !</p>
+<h3>Switch Users Page :</h3>
+<p>The URL <a href="http://localhost:3001">http://localhost:3001</a> and <a href="http://localhost:3001/profile">http://localhost:3001/profile</a>,
+both point to a Switch users page which makes it easy to switch between users. You can access this by clicking on the &quot;Profile&quot; button
+in the main navigation at the top of the site, or by writing 1 of these 2 URLs directly.</p>
+<h3>Profile Page :</h3>
+<p>The 2 URL available (for the 2 actives users) are:</p>
+<ul>
+<li><a href="http://localhost:3001/profile/user/12">http://localhost:3001/profile/user/12</a></li>
+<li><a href="http://localhost:3001/profile/user/18">http://localhost:3001/profile/user/18</a></li>
+</ul>
+<p>You can also access each of them by clicking on the card of the user you want to see from the Switch Users page.</p>
+<h2>4. Documentation with JSDoc</h2>
+<p>For access to the website documentation :</p>
+<ul>
+<li><a href="http://localhost:5500/frontend/docs/index.html">http://localhost:5500/frontend/docs/index.html</a>
+🚨 Be careful ! If you have not called your frontend folder &quot;frontend&quot;, change this part of the URL by replacing the word &quot;frontend&quot; with the name of your folder.</li>
+<li>Or open the Docs folder, look for the index.html file, right click on it and select the command &quot;open in browser&quot; or &quot;open with live server.</li>
+</ul>
+<h2>5. Learn More</h2>
+<ul>
+<li>This project was bootstrapped with <a href="https://github.com/facebook/create-react-app">Create React App</a>.</li>
+<li>You can learn more in the <a href="https://facebook.github.io/create-react-app/docs/getting-started">Create React App documentation</a>.</li>
+<li>To learn React, check out the <a href="https://reactjs.org/">React documentation</a>.</li>
+</ul></article>
     </section>
 
 
@@ -94,7 +129,7 @@ Your app is ready to be deployed!</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Nov 28 2021 02:27:09 GMT+0100 (heure normale d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Nov 28 2021 18:32:12 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

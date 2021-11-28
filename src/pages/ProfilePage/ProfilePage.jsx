@@ -92,6 +92,7 @@ const ProfilePage = () => {
                  */
                 const performance = await getUserPerformance(id);
                 setUserPerformance(performance.data.data.data);
+                
             } catch (error) {
                 console.error('Error: profileAllData', error);
                 setError(true);
