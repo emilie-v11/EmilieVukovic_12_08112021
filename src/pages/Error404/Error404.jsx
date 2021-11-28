@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './Error404.css';
 
 /**
- * @description It's displayed when error 404
- * @type {Function} Error404 - Functional component
+ * It's displayed when error 404
  * @returns {ReactElement} Error404 component
  */
 const Error404 = () => {

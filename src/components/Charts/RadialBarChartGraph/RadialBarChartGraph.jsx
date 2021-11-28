@@ -9,16 +9,11 @@ import {
 } from 'recharts';
 import Unavailable from '../../Unavailable/Unavailable';
 
-/** 
- // http://localhost:3000/user/${id}
- * @description RadarChartGraph with Recharts contain the array's data
- * @type {Function} RadarChartGraph - Functional component
+/**
+ * RadialBarChartGraph with Recharts contain the array's data
  * @param {number} todayScore - decimal number between 0 and 1, percentage of completion of the goal
- * @returns {ReactElement} RadarChart
  *
- // Props : Erreur in Backend API different name for the same property
- // for user id: 12 : todayscore, for user id: 18 : score
- * @property {number} todayScore || @property {number} score
+ * @returns {ReactElement} RadialBarChart
  */
 
 const RadialBarChartGraph = ({ todayScore }) => {
@@ -30,7 +25,6 @@ const RadialBarChartGraph = ({ todayScore }) => {
     const data = [
         {
             score: todayScore,
-            // scorePercentage: todayScore * 100,
         },
     ];
 

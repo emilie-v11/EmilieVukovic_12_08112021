@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * @description It is displayed when data isn't available, the rest of the page can be display
- * @type {Function} Unavailable - Functional component
+ * It is displayed when data isn't available, the rest of the page can be display
  * @param {string} color
  * @returns {ReactElement} Unavailable
  */

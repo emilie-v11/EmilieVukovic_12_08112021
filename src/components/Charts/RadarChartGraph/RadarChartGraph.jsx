@@ -10,16 +10,9 @@ import {
 } from 'recharts';
 
 /**
- // http://localhost:3000/user/${id}/performance
- * @description RadarChartGraph with Recharts contain the array's data
- * @type {Function} RadarChartGraph - Functional component
+ * RadarChartGraph with Recharts contain the array's data
  * @param {array} userPerformance - value & kind.
  * @returns {ReactElement} RadarChart
- * 
- // Props : Array of object 'userPerformance':
- * @typeof {array} data
- * @property {number} value
- * @property {number} kind
  */
 
 const RadarChartGraph = ({ userPerformance }) => {

@@ -33,29 +33,63 @@ const ProfilePage = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        // setIsLoading(true);
-        // setError(false);
-
         /**
-         * @description
          * @async
-         * @type {Function} getProfilePageAllData
+         * @returns {Response}
+         * @throws {Error}
          */
         async function getProfilePageAllData() {
             try {
+                /**
+                 * userInfos {object} - keydata {object} - todayScore {number}
+                 * @constant userInfos
+                 *
+                 * @property {string} firstName - userInfos
+                 * @property {string} lastName - userInfos
+                 * @property {number} age - userInfos
+                 *
+                 * @property {number} calorieCount - keydata
+                 * @property {number} proteinCount - keydata
+                 * @property {number} carbohydrateCount - keydata
+                 * @property {number} lipidCount - keydata
+                 *
+                 * @property {number} todayscore - todayscore
+                 * @property {number} score - todayscore
+                 */
                 const userInfos = await getUserInfos(id);
                 setUserInfos(userInfos.data.data.userInfos);
                 setKeyData(userInfos.data.data.keyData);
+                // Error in Backend API different name for the same property:
+                // user12 => todayscore / user18 => score
                 setTodayScore(
                     userInfos.data.data.todayScore || userInfos.data.data.score
                 );
 
+                /**
+                 * Array of object
+                 * @constant activity
+                 * @property {string|number} day
+                 * @property {number} kilogram
+                 * @property {number} calories
+                 */
                 const activity = await getUserActivity(id);
                 setUserActivity(activity.data.data.sessions);
 
+                /**
+                 * Array of object
+                 * @constant averageSessions
+                 * @property {number} day
+                 * @property {number} sessionLength
+                 */
                 const averageSessions = await getUserAverageSessions(id);
                 setUserAverageSessions(averageSessions.data.data.sessions);
 
+                /**
+                 * Array of object
+                 * @constant performance
+                 * @property {number} value
+                 * @property {number} kind
+                 */
                 const performance = await getUserPerformance(id);
                 setUserPerformance(performance.data.data.data);
             } catch (error) {

@@ -4,8 +4,7 @@ import MainNav from './MainNav/MainNav';
 // import NavIcons from '../NavIcons/NavIcons';
 
 /**
- * @description Header of the website app
- * @type {Function} Header - Functional component
+ * Header of the website app
  * @returns {ReactElement} Header component
  */
 const Header = () => {

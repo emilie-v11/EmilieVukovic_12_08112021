@@ -4,10 +4,10 @@ import './SwitchUsers.css';
 import { userData } from '../../services/mock/data';
 
 /**
- * @description This is a temporary page, it replaces the unavailable Connection function. It allows you to switch from one user to another while waiting.
- * @type {Function} SwitchUsers - Functional component
+ * This is a temporary page, it replaces the unavailable Connection function. It allows you to switch from one user to another while waiting.
  * @returns {ReactElement} SwitchUsers
  */
+
 const SwitchUsers = () => {
     return (
         <main className="main-switchUsers">

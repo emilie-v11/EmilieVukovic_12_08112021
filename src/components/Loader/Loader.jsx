@@ -2,8 +2,7 @@ import React from 'react';
 import './Loader.css';
 
 /**
- * @description It's show when data aren't ready to display
- * @type {Function} Loader - Functional component
+ * It's show when data aren't ready to display
  * @returns {ReactElement} Loader component when data aren't ready to display
  */
 const Loader = () => {

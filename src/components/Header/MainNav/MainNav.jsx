@@ -4,8 +4,7 @@ import { ReactComponent as Logo } from '../../../assets/logo.svg';
 import './MainNav.css';
 
 /**
- * @description main menu navigation inside Header
- * @type {Function} MainNav - Functional component
+ * Main menu navigation inside Header
  * @returns {ReactElement} MainNav
  */
 const MainNav = () => {

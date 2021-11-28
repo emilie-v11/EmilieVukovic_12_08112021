@@ -11,17 +11,11 @@ import {
 import './LineChartGraph.css';
 import Unavailable from '../../Unavailable/Unavailable';
 
-/** 
- // http://localhost:3000/user/${id}/average-sessions
- * @description LineChartGraph with Recharts contain the array's data.
- * @type {Function} LineChartGraph - Functional component
+/**
+ * LineChartGraph with Recharts contain the array's data.
  * @param {array} userAverageSessions - day & sessionLength of each day of the week.
+ *
  * @returns {ReactElement} LineChart
- * 
- // Props : Array of object 'userAverageSessions':
- * @typedef {Object} Sessions
- * @property {number} day
- * @property {number} sessionLength
  */
 
 const LineChartGraph = ({ userAverageSessions }) => {

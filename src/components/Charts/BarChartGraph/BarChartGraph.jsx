@@ -13,20 +13,12 @@ import {
     Bar,
 } from 'recharts';
 
-/** 
- // http://localhost:3000/user/${id}/activity
- * @description BarChart Graph with Recharts contain the array's data.
- * @type {Function} BarChartGraph - Functional component
- * @param {array} userActivity - weight & calories of each day of the week.
- * @returns {ReactElement} BarChart
+/**
+ * BarChartGraph with Recharts contain the array's data
+ * @param {array} userActivity - weight & calories of each day of the week
  *
- // Props : Array of object 'userActivity':
- * @typedef {Object} Sessions
- * @property {string} day
- * @property {number} kilogram
- * @property {number} calories
+ * @returns {ReactElement} BarChart
  */
-
 const BarChartGraph = ({ userActivity }) => {
     //if data's props aren't available, return 'Unvailable' component in place of Graph
     if (!userActivity) {
@@ -36,9 +28,11 @@ const BarChartGraph = ({ userActivity }) => {
     // Duplicate array before modified array's data
     const userActivityArray = [...userActivity];
 
-    /** Change the type of 'day', for the requested format's design. ("2020-07-01" => 1), keep just the day's data (dd) & without the first useless zero.
-     * @param {array.object} userActivityArray
-     * @returns {array.object} newData
+    /**
+     * Change the type of 'day', for the requested format's design. ("2020-07-01" => 1), keep just the day's data (dd) & without the first useless zero.
+     * @param {array<object>} userActivityArray
+     *
+     * @returns {array<object>} newData
      */
     // create new empty array
     const newData = [];
@@ -51,15 +45,18 @@ const BarChartGraph = ({ userActivity }) => {
         newData.push({
             //day: dd, // for keep it in Number format
             day: `${dd}`, // or for keep it in string format
+            fullDate: `${dd}/${mm}/${yyyy}`, // store the full date, but not use here
             kilogram: datum.kilogram,
             calories: datum.calories,
         });
     }
 
-    /** Customize the Tooltip with content
+    /**
+     * Customize the Tooltip with content
      * @param {boolean} active - if active, display the tooltip
      * @param {object} payload - The source data of the content to be displayed in the tooltip.
-     * @returns {ReactElement}
+     *
+     * @returns {ReactElement} CustomToolTip
      */
     const CustomToolTip = ({ active, payload }) => {
         if (active && payload && payload.length) {
