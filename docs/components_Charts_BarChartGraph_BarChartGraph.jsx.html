@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Charts/BarChartGraph/BarChartGraph.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Charts/BarChartGraph/BarChartGraph.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import PropTypes from 'prop-types';
+import './BarChartGraph.css';
+import Unavailable from '../../Unavailable/Unavailable';
+import {
+    ResponsiveContainer,
+    BarChart,
+    CartesianGrid,
+    XAxis,
+    YAxis,
+    Tooltip,
+    Legend,
+    Bar,
+} from 'recharts';
+
+/**
+ * BarChartGraph with Recharts contain the array's data
+ * @param {array} userActivity - weight &amp; calories of each day of the week
+ *
+ * @returns {ReactElement} BarChart
+ */
+const BarChartGraph = ({ userActivity }) => {
+    //if data's props aren't available, return 'Unvailable' component in place of Graph
+    if (!userActivity) {
+        return &lt;Unavailable />;
+    }
+
+    // Duplicate array before modified array's data
+    const userActivityArray = [...userActivity];
+
+    /**
+     * Change the type of 'day', for the requested format's design. ("2020-07-01" => 1), keep just the day's data (dd) &amp; without the first useless zero.
+     * @param {array&lt;object>} userActivityArray
+     *
+     * @returns {array&lt;object>} newData
+     */
+    // create new empty array
+    const newData = [];
+    // loop in every object of the array 'userActivityArray'
+    for (let datum of userActivityArray) {
+        // Remove '-' &amp; changes the date's type, string => number. the useless zero disapear. 01 => 1, 02 => 2 ...
+        const [yyyy, mm, dd] = datum.day.split('-').map(Number); //other method : .map(x => +x)
+
+        // Push the modified data in the 'newData' array and add the other data not modified.
+        newData.push({
+            //day: dd, // for keep it in Number format
+            day: `${dd}`, // or for keep it in string format
+            fullDate: `${dd}/${mm}/${yyyy}`, // store the full date, but not use here
+            kilogram: datum.kilogram,
+            calories: datum.calories,
+        });
+    }
+
+    /**
+     * Customize the Tooltip with content
+     * @param {boolean} active - if active, display the tooltip
+     * @param {object} payload - The source data of the content to be displayed in the tooltip.
+     *
+     * @returns {ReactElement} CustomToolTip
+     */
+    const CustomToolTip = ({ active, payload }) => {
+        if (active &amp;&amp; payload &amp;&amp; payload.length) {
+            return (
+                &lt;div className="custom-tooltip">
+                    &lt;p className="custom-tooltip-text">{`${payload[0].value}kg`}&lt;/p>
+                    &lt;p className="custom-tooltip-text">{`${payload[1].value}kCal`}&lt;/p>
+                &lt;/div>
+            );
+        }
+        return null;
+    };
+
+    return (
+        &lt;div className="wrap">
+            &lt;div className="Legend-Container">
+                &lt;h2 className="BarChart-heading">Activité quotidienne&lt;/h2>
+            &lt;/div>
+            &lt;ResponsiveContainer width={'100%'} height={'100%'}>
+                &lt;BarChart
+                    data={newData}
+                    margin={{ top: 110, right: 48, bottom: 32, left: 48 }}
+                    barGap={8}
+                    barCategoryGap="35%"
+                >
+                    &lt;CartesianGrid
+                        strokeDasharray="3 3"
+                        vertical={false}
+                        style={{ border: '1px solid #DEDEDE', opacity: 0.6 }}
+                    />
+                    &lt;XAxis
+                        dataKey="day"
+                        dy={16}
+                        padding={{ left: -48, right: -48 }}
+                        stroke="#9b9eac"
+                        tickLine={false}
+                        tick={{ fontSize: 14, fontWeight: 500 }}
+                    />
+                    &lt;YAxis
+                        orientation="right"
+                        dataKey="kilogram"
+                        domain={['dataMin - 1', 'dataMax + 1']}
+                        allowDecimals={false}
+                        dx={45}
+                        stroke="#9b9eac"
+                        axisLine={false}
+                        tickLine={false}
+                    />
+                    &lt;YAxis
+                        yAxisId="cal"
+                        dataKey="calories"
+                        domain={[0, 'dataMax + 50']}
+                        hide={true}
+                    />
+                    &lt;Tooltip
+                        content={&lt;CustomToolTip />}
+                        position={{ y: 80 }}
+                        cursor={{ strokeWidth: 55 }}
+                    />
+                    &lt;Legend
+                        verticalAlign="top"
+                        align="right"
+                        style={{
+                            position: 'absolute',
+                            top: '0px',
+                            color: '#74798c ',
+                        }}
+                        iconType="circle"
+                        iconSize="7"
+                    />
+                    &lt;Bar
+                        name="Poids (kg)"
+                        dataKey="kilogram"
+                        maxBarSize={8}
+                        fill="#2b2d30"
+                        radius={[50, 50, 0, 0]}
+                    />
+                    &lt;Bar
+                        yAxisId="cal"
+                        name="Calories brûlées (kCal)"
+                        dataKey="calories"
+                        maxBarSize={7}
+                        fill="#E60000"
+                        radius={[10, 10, 0, 0]}
+                    />
+                &lt;/BarChart>
+            &lt;/ResponsiveContainer>
+        &lt;/div>
+    );
+};
+
+BarChartGraph.propTypes = {
+    userActivity: PropTypes.array,
+};
+
+export default BarChartGraph;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activity">activity</a></li><li><a href="global.html#averageSessions">averageSessions</a></li><li><a href="global.html#BarChartGraph">BarChartGraph</a></li><li><a href="global.html#baseURL">baseURL</a></li><li><a href="global.html#ButtonIcon">ButtonIcon</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#getUserActivity">getUserActivity</a></li><li><a href="global.html#getUserAverageSessions">getUserAverageSessions</a></li><li><a href="global.html#getUserInfos">getUserInfos</a></li><li><a href="global.html#getUserPerformance">getUserPerformance</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#LineChartGraph">LineChartGraph</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#MainNav">MainNav</a></li><li><a href="global.html#NavIcons">NavIcons</a></li><li><a href="global.html#performance">performance</a></li><li><a href="global.html#RadarChartGraph">RadarChartGraph</a></li><li><a href="global.html#RadialBarChartGraph">RadialBarChartGraph</a></li><li><a href="global.html#SwitchUsers">SwitchUsers</a></li><li><a href="global.html#Unavailable">Unavailable</a></li><li><a href="global.html#userInfos">userInfos</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Nov 28 2021 02:27:09 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

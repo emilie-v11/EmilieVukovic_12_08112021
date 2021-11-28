@@ -19,7 +19,7 @@
     "scripts": {
         "start": "export PORT=3001 && react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "doc": "jsdoc -c jsdoc.json",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {

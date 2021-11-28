@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Charts/LineChartGraph/LineChartGraph.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Charts/LineChartGraph/LineChartGraph.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import PropTypes from 'prop-types';
+import {
+    LineChart,
+    Line,
+    XAxis,
+    Tooltip,
+    ResponsiveContainer,
+    YAxis,
+} from 'recharts';
+import './LineChartGraph.css';
+import Unavailable from '../../Unavailable/Unavailable';
+
+/**
+ * LineChartGraph with Recharts contain the array's data.
+ * @param {array} userAverageSessions - day &amp; sessionLength of each day of the week.
+ *
+ * @returns {ReactElement} LineChart
+ */
+
+const LineChartGraph = ({ userAverageSessions }) => {
+    //if data's props aren't available, return 'Unvailable' component in place of Graph
+    if (!userAverageSessions) {
+        return &lt;Unavailable color="#fff" />;
+    }
+
+    // Duplicate array before modified array's data
+    const userAverageSessionsArray = [...userAverageSessions];
+
+    // Add 2 data at first &amp; last place to array to reach the horizontal border of the graphic as requested on the design mock-up
+    const prevDay = {
+        day: 0,
+        sessionLength: 0,
+    };
+    const nextDay = {
+        day: 8,
+        sessionLength: 100,
+    };
+    // return prevDay in first place of the array
+    userAverageSessionsArray.unshift(prevDay);
+    // return nextDay in last place of the array
+    userAverageSessionsArray.push(nextDay);
+
+    // Add a property 'firstLetterDay' @type {string} for letters in bottom of graph
+    const dataAverageSessions = userAverageSessionsArray.map(data => {
+        switch (data.day) {
+            case 0:
+                return { firstLetterDay: '', ...data };
+            case 1:
+                return { firstLetterDay: 'L', ...data };
+            case 2:
+                return { firstLetterDay: 'M', ...data };
+            case 3:
+                return { firstLetterDay: 'M', ...data };
+            case 4:
+                return { firstLetterDay: 'J', ...data };
+            case 5:
+                return { firstLetterDay: 'V', ...data };
+            case 6:
+                return { firstLetterDay: 'S', ...data };
+            case 7:
+                return { firstLetterDay: 'D', ...data };
+            case 8:
+                return { firstLetterDay: '', ...data };
+            default:
+                return { ...data };
+        }
+    });
+
+    /** Customize the Tooltip with content
+     * @param {boolean} active - if active, display the tooltip
+     * @param {object} payload - The source data of the content to be displayed in the tooltip.
+     * @returns {ReactElement}
+     */
+    const CustomToolTip = ({ active, payload }) => {
+        if (active &amp;&amp; payload &amp;&amp; payload.length) {
+            return (
+                &lt;span className="customTooltip-content">
+                    {`${payload[0].value} min`}
+                &lt;/span>
+            );
+        }
+        return null;
+    };
+
+    return (
+        &lt;div className="wrap">
+            &lt;span className="averageSessions-heading">
+                {`Durée moyenne des sessions`}
+            &lt;/span>
+            &lt;ResponsiveContainer width="100%" height="100%">
+                &lt;LineChart
+                    data={dataAverageSessions}
+                    margin={{ top: -30, right: -20, left: -20, bottom: -30 }}
+                >
+                    &lt;Line
+                        type="monotone"
+                        dataKey="sessionLength"
+                        stroke="rgba(255, 255, 255, 0.6)"
+                        strokeWidth={2}
+                        dot={false}
+                        activeDot={{ stroke: '#FF0000', r: 5, strokeWidth: 0 }}
+                    />
+                    &lt;XAxis
+                        dataKey="firstLetterDay"
+                        axisLine={false}
+                        tickLine={false}
+                        tick={{
+                            fill: '#fff',
+                            fontSize: '12',
+                            dy: -35,
+                            opacity: '0.7',
+                        }}
+                    />
+                    &lt;YAxis
+                        dataKey="sessionLength"
+                        domain={[-40, 'dataMax + 60']}
+                        hide={true}
+                    />
+                    &lt;Tooltip
+                        content={&lt;CustomToolTip />}
+                        position={{ y: 120 }}
+                        wrapperStyle={{
+                            color: '#000',
+                            background: '#fff',
+                            fontSize: '8px',
+                            padding: '7px',
+                        }}
+                        cursor={{
+                            stroke: 'rgba(0, 0, 0, 0.1)',
+                            strokeWidth: 62,
+                            position: 'right',
+                        }}
+                        allowEscapeViewBox={{ x: false, y: false }}
+                    />
+                &lt;/LineChart>
+            &lt;/ResponsiveContainer>
+        &lt;/div>
+    );
+};
+
+LineChartGraph.propTypes = {
+    userAverageSessions: PropTypes.array,
+};
+
+export default LineChartGraph;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activity">activity</a></li><li><a href="global.html#averageSessions">averageSessions</a></li><li><a href="global.html#BarChartGraph">BarChartGraph</a></li><li><a href="global.html#baseURL">baseURL</a></li><li><a href="global.html#ButtonIcon">ButtonIcon</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#getUserActivity">getUserActivity</a></li><li><a href="global.html#getUserAverageSessions">getUserAverageSessions</a></li><li><a href="global.html#getUserInfos">getUserInfos</a></li><li><a href="global.html#getUserPerformance">getUserPerformance</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#LineChartGraph">LineChartGraph</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#MainNav">MainNav</a></li><li><a href="global.html#NavIcons">NavIcons</a></li><li><a href="global.html#performance">performance</a></li><li><a href="global.html#RadarChartGraph">RadarChartGraph</a></li><li><a href="global.html#RadialBarChartGraph">RadialBarChartGraph</a></li><li><a href="global.html#SwitchUsers">SwitchUsers</a></li><li><a href="global.html#Unavailable">Unavailable</a></li><li><a href="global.html#userInfos">userInfos</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Nov 28 2021 02:27:09 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

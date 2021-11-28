@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/ProfilePage/ProfilePage.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/ProfilePage/ProfilePage.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import './ProfilePage.css';
+import Calories from '../../assets/icons-keyData/calories-icon.png';
+import Protein from '../../assets/icons-keyData/protein-icon.png';
+import Carbs from '../../assets/icons-keyData/carbs-icon.png';
+import Fat from '../../assets/icons-keyData/fat-icon.png';
+import Loader from '../../components/Loader/Loader';
+import Error404 from '../Error404/Error404';
+import KeyData from '../../components/KeyData/KeyData';
+import RadarChartGraph from '../../components/Charts/RadarChartGraph/RadarChartGraph';
+import RadialBarChartGraph from '../../components/Charts/RadialBarChartGraph/RadialBarChartGraph';
+import LineChartGraph from '../../components/Charts/LineChartGraph/LineChartGraph';
+import BarChartGraph from '../../components/Charts/BarChartGraph/BarChartGraph';
+import {
+    getUserInfos,
+    getUserActivity,
+    getUserAverageSessions,
+    getUserPerformance,
+} from '../../services/API/calls-API';
+
+const ProfilePage = () => {
+    const [userInfos, setUserInfos] = useState({});
+    const [todayScore, setTodayScore] = useState();
+    const [keyData, setKeyData] = useState({});
+    const [userActivity, setUserActivity] = useState([]);
+    const [userAverageSessions, setUserAverageSessions] = useState([]);
+    const [userPerformance, setUserPerformance] = useState([]);
+
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const { id } = useParams();
+
+    useEffect(() => {
+        /**
+         * @async
+         * @returns {Response}
+         * @throws {Error}
+         */
+        async function getProfilePageAllData() {
+            try {
+                /**
+                 * userInfos {object} - keydata {object} - todayScore {number}
+                 * @constant userInfos
+                 *
+                 * @property {string} firstName - userInfos
+                 * @property {string} lastName - userInfos
+                 * @property {number} age - userInfos
+                 *
+                 * @property {number} calorieCount - keydata
+                 * @property {number} proteinCount - keydata
+                 * @property {number} carbohydrateCount - keydata
+                 * @property {number} lipidCount - keydata
+                 *
+                 * @property {number} todayscore - todayscore
+                 * @property {number} score - todayscore
+                 */
+                const userInfos = await getUserInfos(id);
+                setUserInfos(userInfos.data.data.userInfos);
+                setKeyData(userInfos.data.data.keyData);
+                // Error in Backend API different name for the same property:
+                // user12 => todayscore / user18 => score
+                setTodayScore(
+                    userInfos.data.data.todayScore || userInfos.data.data.score
+                );
+
+                /**
+                 * Array of object
+                 * @constant activity
+                 * @property {string|number} day
+                 * @property {number} kilogram
+                 * @property {number} calories
+                 */
+                const activity = await getUserActivity(id);
+                setUserActivity(activity.data.data.sessions);
+
+                /**
+                 * Array of object
+                 * @constant averageSessions
+                 * @property {number} day
+                 * @property {number} sessionLength
+                 */
+                const averageSessions = await getUserAverageSessions(id);
+                setUserAverageSessions(averageSessions.data.data.sessions);
+
+                /**
+                 * Array of object
+                 * @constant performance
+                 * @property {number} value
+                 * @property {number} kind
+                 */
+                const performance = await getUserPerformance(id);
+                setUserPerformance(performance.data.data.data);
+            } catch (error) {
+                console.error('Error: profileAllData', error);
+                setError(true);
+            }
+            setIsLoading(false);
+        }
+        getProfilePageAllData();
+    }, [id]);
+
+    if ((!isLoading &amp;&amp; error) || id === undefined || setError === true) {
+        return &lt;Error404 />;
+    } else if (isLoading) {
+        return &lt;Loader />;
+    } else {
+        return (
+            &lt;main className="main-profilePage">
+                &lt;div className="profilePage-heading">
+                    &lt;h1>
+                        {`Bonjour `}
+                        &lt;span className="profilePage-firstName">
+                            {userInfos.firstName}
+                        &lt;/span>
+                    &lt;/h1>
+                    &lt;p>
+                        Félicitation ! Vous avez explosé vos objectifs hier 👏
+                    &lt;/p>
+                &lt;/div>
+
+                &lt;div className="profilePage-informations">
+                    &lt;div className="profilePage-graphs">
+                        &lt;div className="day-activity">
+                            &lt;div className="bar-chart-graph">
+                                &lt;BarChartGraph userActivity={userActivity} />
+                            &lt;/div>
+                        &lt;/div>
+                        &lt;div className="trio-charts">
+                            &lt;div className="line-chart-graph">
+                                &lt;LineChartGraph
+                                    userAverageSessions={userAverageSessions}
+                                />
+                            &lt;/div>
+                            &lt;div className="radar-chart-graph">
+                                &lt;RadarChartGraph
+                                    userPerformance={userPerformance}
+                                />
+                            &lt;/div>
+                            &lt;div className="radialbar-chart-graph">
+                                &lt;RadialBarChartGraph todayScore={todayScore} />
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+
+                    &lt;div className="keys-data-cards">
+                        &lt;KeyData
+                            src={Calories}
+                            count={keyData.calorieCount}
+                            unit={'kCal'}
+                            nutrientsType={'Calories'}
+                        />
+                        &lt;KeyData
+                            src={Protein}
+                            count={keyData.proteinCount}
+                            unit={'g'}
+                            nutrientsType={'Proteines'}
+                        />
+                        &lt;KeyData
+                            src={Carbs}
+                            count={keyData.carbohydrateCount}
+                            unit={'g'}
+                            nutrientsType={'Glucides'}
+                        />
+                        &lt;KeyData
+                            src={Fat}
+                            count={keyData.lipidCount}
+                            unit={'g'}
+                            nutrientsType={'Lipides'}
+                        />
+                    &lt;/div>
+                &lt;/div>
+            &lt;/main>
+        );
+    }
+};
+
+export default ProfilePage;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activity">activity</a></li><li><a href="global.html#averageSessions">averageSessions</a></li><li><a href="global.html#BarChartGraph">BarChartGraph</a></li><li><a href="global.html#baseURL">baseURL</a></li><li><a href="global.html#ButtonIcon">ButtonIcon</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#getUserActivity">getUserActivity</a></li><li><a href="global.html#getUserAverageSessions">getUserAverageSessions</a></li><li><a href="global.html#getUserInfos">getUserInfos</a></li><li><a href="global.html#getUserPerformance">getUserPerformance</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#LineChartGraph">LineChartGraph</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#MainNav">MainNav</a></li><li><a href="global.html#NavIcons">NavIcons</a></li><li><a href="global.html#performance">performance</a></li><li><a href="global.html#RadarChartGraph">RadarChartGraph</a></li><li><a href="global.html#RadialBarChartGraph">RadialBarChartGraph</a></li><li><a href="global.html#SwitchUsers">SwitchUsers</a></li><li><a href="global.html#Unavailable">Unavailable</a></li><li><a href="global.html#userInfos">userInfos</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Nov 28 2021 02:27:09 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
