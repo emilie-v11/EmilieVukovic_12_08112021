@@ -8,12 +8,7 @@ import RadialBarChartGraph from '../../components/Charts/RadialBarChartGraph/Rad
 import LineChartGraph from '../../components/Charts/LineChartGraph/LineChartGraph';
 import BarChartGraph from '../../components/Charts/BarChartGraph/BarChartGraph';
 import KeyDataList from '../../components/KeyDataList/KeyDataList';
-import {
-    getUserInfos,
-    getUserActivity,
-    getUserAverageSessions,
-    getUserPerformance,
-} from '../../services/API/calls-API';
+import { getUserData } from '../../services/API/calls-API';
 
 const ProfilePage = () => {
     const [userInfos, setUserInfos] = useState({});
@@ -52,14 +47,12 @@ const ProfilePage = () => {
                  * @property {number} todayscore - todayscore
                  * @property {number} score - todayscore
                  */
-                const userInfos = await getUserInfos(id);
+                const userInfos = await getUserData(id, '');
                 setUserInfos(userInfos.data.data.userInfos);
                 setKeyData(userInfos.data.data.keyData);
                 // Error in Backend API different name for the same property:
                 // user12 => todayscore / user18 => score
-                setTodayScore(
-                    userInfos.data.data.todayScore || userInfos.data.data.score
-                );
+                setTodayScore(userInfos.data.data.todayScore || userInfos.data.data.score);
 
                 /**
                  * Array of object
@@ -68,7 +61,7 @@ const ProfilePage = () => {
                  * @property {number} kilogram
                  * @property {number} calories
                  */
-                const activity = await getUserActivity(id);
+                const activity = await getUserData(id, 'activity');
                 setUserActivity(activity.data.data.sessions);
 
                 /**
@@ -77,7 +70,7 @@ const ProfilePage = () => {
                  * @property {number} day
                  * @property {number} sessionLength
                  */
-                const averageSessions = await getUserAverageSessions(id);
+                const averageSessions = await getUserData(id, 'average-sessions');
                 setUserAverageSessions(averageSessions.data.data.sessions);
 
                 /**
@@ -86,12 +79,13 @@ const ProfilePage = () => {
                  * @property {number} value
                  * @property {number} kind
                  */
-                const performance = await getUserPerformance(id);
+                const performance = await getUserData(id, 'performance');
                 setUserPerformance(performance.data.data.data);
             } catch (error) {
                 console.error('Error: profileAllData', error);
                 setError(true);
             }
+
             setIsLoading(false);
         }
         getProfilePageAllData();
@@ -109,13 +103,9 @@ const ProfilePage = () => {
                 <div className="profilePage-heading">
                     <h1>
                         {`Bonjour `}
-                        <span className="profilePage-firstName">
-                            {firstName}
-                        </span>
+                        <span className="profilePage-firstName">{firstName}</span>
                     </h1>
-                    <p>
-                        Félicitation ! Vous avez explosé vos objectifs hier 👏
-                    </p>
+                    <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
                 </div>
 
                 <div className="profilePage-informations">
@@ -127,14 +117,10 @@ const ProfilePage = () => {
                         </div>
                         <div className="trio-charts">
                             <div className="line-chart-graph">
-                                <LineChartGraph
-                                    userAverageSessions={userAverageSessions}
-                                />
+                                <LineChartGraph userAverageSessions={userAverageSessions} />
                             </div>
                             <div className="radar-chart-graph">
-                                <RadarChartGraph
-                                    userPerformance={userPerformance}
-                                />
+                                <RadarChartGraph userPerformance={userPerformance} />
                             </div>
                             <div className="radialbar-chart-graph">
                                 <RadialBarChartGraph todayScore={todayScore} />

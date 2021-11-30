@@ -1,4 +1,4 @@
-export const userData = [
+export const USER_MAIN_DATA = [
     {
         id: 12,
         userInfos: {
@@ -21,7 +21,7 @@ export const userData = [
             lastName: 'Ratorez',
             age: 34,
         },
-        todayScore: 0.3,
+        score: 0.3,
         keyData: {
             calorieCount: 2500,
             proteinCount: 90,
@@ -31,9 +31,9 @@ export const userData = [
     },
 ];
 
-export const userActivity = [
+export const USER_ACTIVITY = [
     {
-        userId: 12,
+        id: 12,
         sessions: [
             {
                 day: '2020-07-01',
@@ -73,7 +73,7 @@ export const userActivity = [
         ],
     },
     {
-        userId: 18,
+        id: 18,
         sessions: [
             {
                 day: '2020-07-01',
@@ -114,9 +114,9 @@ export const userActivity = [
     },
 ];
 
-export const userAverage = [
+export const USER_AVERAGE_SESSIONS = [
     {
-        userId: 12,
+        id: 12,
         sessions: [
             {
                 day: 1,
@@ -149,7 +149,7 @@ export const userAverage = [
         ],
     },
     {
-        userId: 18,
+        id: 18,
         sessions: [
             {
                 day: 1,
@@ -183,9 +183,9 @@ export const userAverage = [
     },
 ];
 
-export const userPerformance = [
+export const USER_PERFORMANCE = [
     {
-        userId: 12,
+        id: 12,
         kind: {
             1: 'cardio',
             2: 'energy',
@@ -222,7 +222,7 @@ export const userPerformance = [
         ],
     },
     {
-        userId: 18,
+        id: 18,
         kind: {
             1: 'cardio',
             2: 'energy',

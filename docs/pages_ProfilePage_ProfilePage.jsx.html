@@ -36,12 +36,7 @@ import RadialBarChartGraph from '../../components/Charts/RadialBarChartGraph/Rad
 import LineChartGraph from '../../components/Charts/LineChartGraph/LineChartGraph';
 import BarChartGraph from '../../components/Charts/BarChartGraph/BarChartGraph';
 import KeyDataList from '../../components/KeyDataList/KeyDataList';
-import {
-    getUserInfos,
-    getUserActivity,
-    getUserAverageSessions,
-    getUserPerformance,
-} from '../../services/API/calls-API';
+import { getUserData } from '../../services/API/calls-API';
 
 const ProfilePage = () => {
     const [userInfos, setUserInfos] = useState({});
@@ -80,14 +75,12 @@ const ProfilePage = () => {
                  * @property {number} todayscore - todayscore
                  * @property {number} score - todayscore
                  */
-                const userInfos = await getUserInfos(id);
+                const userInfos = await getUserData(id, '');
                 setUserInfos(userInfos.data.data.userInfos);
                 setKeyData(userInfos.data.data.keyData);
                 // Error in Backend API different name for the same property:
                 // user12 => todayscore / user18 => score
-                setTodayScore(
-                    userInfos.data.data.todayScore || userInfos.data.data.score
-                );
+                setTodayScore(userInfos.data.data.todayScore || userInfos.data.data.score);
 
                 /**
                  * Array of object
@@ -96,7 +89,7 @@ const ProfilePage = () => {
                  * @property {number} kilogram
                  * @property {number} calories
                  */
-                const activity = await getUserActivity(id);
+                const activity = await getUserData(id, 'activity');
                 setUserActivity(activity.data.data.sessions);
 
                 /**
@@ -105,7 +98,7 @@ const ProfilePage = () => {
                  * @property {number} day
                  * @property {number} sessionLength
                  */
-                const averageSessions = await getUserAverageSessions(id);
+                const averageSessions = await getUserData(id, 'average-sessions');
                 setUserAverageSessions(averageSessions.data.data.sessions);
 
                 /**
@@ -114,12 +107,13 @@ const ProfilePage = () => {
                  * @property {number} value
                  * @property {number} kind
                  */
-                const performance = await getUserPerformance(id);
+                const performance = await getUserData(id, 'performance');
                 setUserPerformance(performance.data.data.data);
             } catch (error) {
                 console.error('Error: profileAllData', error);
                 setError(true);
             }
+
             setIsLoading(false);
         }
         getProfilePageAllData();
@@ -137,13 +131,9 @@ const ProfilePage = () => {
                 &lt;div className="profilePage-heading">
                     &lt;h1>
                         {`Bonjour `}
-                        &lt;span className="profilePage-firstName">
-                            {firstName}
-                        &lt;/span>
+                        &lt;span className="profilePage-firstName">{firstName}&lt;/span>
                     &lt;/h1>
-                    &lt;p>
-                        Félicitation ! Vous avez explosé vos objectifs hier 👏
-                    &lt;/p>
+                    &lt;p>Félicitation ! Vous avez explosé vos objectifs hier 👏&lt;/p>
                 &lt;/div>
 
                 &lt;div className="profilePage-informations">
@@ -155,14 +145,10 @@ const ProfilePage = () => {
                         &lt;/div>
                         &lt;div className="trio-charts">
                             &lt;div className="line-chart-graph">
-                                &lt;LineChartGraph
-                                    userAverageSessions={userAverageSessions}
-                                />
+                                &lt;LineChartGraph userAverageSessions={userAverageSessions} />
                             &lt;/div>
                             &lt;div className="radar-chart-graph">
-                                &lt;RadarChartGraph
-                                    userPerformance={userPerformance}
-                                />
+                                &lt;RadarChartGraph userPerformance={userPerformance} />
                             &lt;/div>
                             &lt;div className="radialbar-chart-graph">
                                 &lt;RadialBarChartGraph todayScore={todayScore} />
@@ -190,13 +176,13 @@ export default ProfilePage;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activity">activity</a></li><li><a href="global.html#averageSessions">averageSessions</a></li><li><a href="global.html#BarChartGraph">BarChartGraph</a></li><li><a href="global.html#baseURL">baseURL</a></li><li><a href="global.html#ButtonIcon">ButtonIcon</a></li><li><a href="global.html#dataActivityFormat">dataActivityFormat</a></li><li><a href="global.html#dataAverageSessionsFormat">dataAverageSessionsFormat</a></li><li><a href="global.html#dataPerformanceFormat">dataPerformanceFormat</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#getUserActivity">getUserActivity</a></li><li><a href="global.html#getUserAverageSessions">getUserAverageSessions</a></li><li><a href="global.html#getUserInfos">getUserInfos</a></li><li><a href="global.html#getUserPerformance">getUserPerformance</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#KeyDataList">KeyDataList</a></li><li><a href="global.html#LineChartGraph">LineChartGraph</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#MainNav">MainNav</a></li><li><a href="global.html#NavIcons">NavIcons</a></li><li><a href="global.html#performance">performance</a></li><li><a href="global.html#RadarChartGraph">RadarChartGraph</a></li><li><a href="global.html#RadialBarChartGraph">RadialBarChartGraph</a></li><li><a href="global.html#SwitchUsers">SwitchUsers</a></li><li><a href="global.html#Unavailable">Unavailable</a></li><li><a href="global.html#userInfos">userInfos</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activity">activity</a></li><li><a href="global.html#averageSessions">averageSessions</a></li><li><a href="global.html#BarChartGraph">BarChartGraph</a></li><li><a href="global.html#baseURL">baseURL</a></li><li><a href="global.html#ButtonIcon">ButtonIcon</a></li><li><a href="global.html#dataActivityFormat">dataActivityFormat</a></li><li><a href="global.html#dataAverageSessionsFormat">dataAverageSessionsFormat</a></li><li><a href="global.html#dataPerformanceFormat">dataPerformanceFormat</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#getUserData">getUserData</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#KeyDataList">KeyDataList</a></li><li><a href="global.html#LineChartGraph">LineChartGraph</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#MainNav">MainNav</a></li><li><a href="global.html#NavIcons">NavIcons</a></li><li><a href="global.html#performance">performance</a></li><li><a href="global.html#RadarChartGraph">RadarChartGraph</a></li><li><a href="global.html#RadialBarChartGraph">RadialBarChartGraph</a></li><li><a href="global.html#SwitchUsers">SwitchUsers</a></li><li><a href="global.html#Unavailable">Unavailable</a></li><li><a href="global.html#userInfos">userInfos</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue Nov 30 2021 05:58:41 GMT+0100 (heure normale d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue Nov 30 2021 15:02:31 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './SwitchUsers.css';
-import { userData } from '../../services/mock/data';
+import { USER_MAIN_DATA } from '../../services/mock/data';
 
 /**
  * This is a temporary page, it replaces the unavailable Connection function. It allows you to switch from one user to another while waiting.
@@ -13,12 +13,8 @@ const SwitchUsers = () => {
         <main className="main-switchUsers">
             <h1>Switch Users</h1>
             <section className="container-users">
-                {userData.map(user => (
-                    <NavLink
-                        key={user.id}
-                        className="user"
-                        to={`/profile/user/${user.id}`}
-                    >
+                {USER_MAIN_DATA.map(user => (
+                    <NavLink key={user.id} className="user" to={`/profile/user/${user.id}`}>
                         <h2>
                             {`${user.userInfos.firstName}
                             ${user.userInfos.lastName}`}
