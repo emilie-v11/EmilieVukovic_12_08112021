@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/NavIcons/ButtonIcon/ButtonIcon.jsx</title>
+    <title>JSDoc: Source: services/format/userPerformanceFormat.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/NavIcons/ButtonIcon/ButtonIcon.jsx</h1>
+    <h1 class="page-title">Source: services/format/userPerformanceFormat.jsx</h1>
 
     
 
@@ -26,39 +26,33 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
-import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import './ButtonIcon.css';
-
-/**
- * Secondary menu navigation button in NavIcons
- * @param {string} path - link, direction when is clicked
- * @param {string} imgSrc - image's URL
- * @param {string} altText - image's alt, description for screen reader
- * @returns {ReactElement} ButtonIcon component
+            <pre class="prettyprint source linenums"><code>/**
+ * Format userPerformance' data for RadarChartGraph component
+ * dataPerformanceFormat
+ * @param {array} array
+ * @returns {object} activity, data(value, kind)
  */
-const ButtonIcon = ({ path, imgSrc, altText }) => {
-    return (
-        &lt;NavLink
-            className="nav-icon"
-            to={path}
-            onClick={e => e.preventDefault()}
-        >
-            &lt;button className="btn-icon">
-                &lt;img className="icon" src={imgSrc} alt={altText} />
-            &lt;/button>
-        &lt;/NavLink>
-    );
-};
-
-ButtonIcon.propTypes = {
-    imgSrc: PropTypes.string.isRequired,
-    altText: PropTypes.string.isRequired,
-    path: PropTypes.string.isRequired,
-};
-
-export default ButtonIcon;
+export const dataPerformanceFormat = array =>
+    // Add a property 'activity' for each kind of object in array.
+    // &amp; reverse the order of kind for respect the design mock-up.
+    array.reverse().map(data => {
+        switch (data.kind) {
+            case 1:
+                return { activity: 'Cardio', ...data };
+            case 2:
+                return { activity: 'Energie', ...data };
+            case 3:
+                return { activity: 'Endurance', ...data };
+            case 4:
+                return { activity: 'Force', ...data };
+            case 5:
+                return { activity: 'Vitesse', ...data };
+            case 6:
+                return { activity: 'Intensité', ...data };
+            default:
+                return { ...data };
+        }
+    });
 </code></pre>
         </article>
     </section>

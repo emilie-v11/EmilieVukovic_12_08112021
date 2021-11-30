@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/NavIcons/ButtonIcon/ButtonIcon.jsx</title>
+    <title>JSDoc: Source: components/KeyDataList/KeyDataList.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/NavIcons/ButtonIcon/ButtonIcon.jsx</h1>
+    <h1 class="page-title">Source: components/KeyDataList/KeyDataList.jsx</h1>
 
     
 
@@ -27,38 +27,54 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react';
-import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './ButtonIcon.css';
+import KeyData from './KeyData/KeyData';
+import Calories from '../../assets/icons-keyData/calories-icon.png';
+import Protein from '../../assets/icons-keyData/protein-icon.png';
+import Carbs from '../../assets/icons-keyData/carbs-icon.png';
+import Fat from '../../assets/icons-keyData/fat-icon.png';
 
 /**
- * Secondary menu navigation button in NavIcons
- * @param {string} path - link, direction when is clicked
- * @param {string} imgSrc - image's URL
- * @param {string} altText - image's alt, description for screen reader
- * @returns {ReactElement} ButtonIcon component
+ * List of keyData
+ * @param {object} keyData - calorieCount, proteinCount, carbohydrateCount, lipidCount
+ * @returns {ReactElement} KeyDataList component
  */
-const ButtonIcon = ({ path, imgSrc, altText }) => {
+const KeyDataList = ({ keyData }) => {
     return (
-        &lt;NavLink
-            className="nav-icon"
-            to={path}
-            onClick={e => e.preventDefault()}
-        >
-            &lt;button className="btn-icon">
-                &lt;img className="icon" src={imgSrc} alt={altText} />
-            &lt;/button>
-        &lt;/NavLink>
+        &lt;>
+            &lt;KeyData
+                src={Calories}
+                count={keyData.calorieCount}
+                unit={'kCal'}
+                nutrientsType={'Calories'}
+            />
+            &lt;KeyData
+                src={Protein}
+                count={keyData.proteinCount}
+                unit={'g'}
+                nutrientsType={'Proteines'}
+            />
+            &lt;KeyData
+                src={Carbs}
+                count={keyData.carbohydrateCount}
+                unit={'g'}
+                nutrientsType={'Glucides'}
+            />
+            &lt;KeyData
+                src={Fat}
+                count={keyData.lipidCount}
+                unit={'g'}
+                nutrientsType={'Lipides'}
+            />
+        &lt;/>
     );
 };
 
-ButtonIcon.propTypes = {
-    imgSrc: PropTypes.string.isRequired,
-    altText: PropTypes.string.isRequired,
-    path: PropTypes.string.isRequired,
+KeyDataList.propTypes = {
+    keyData: PropTypes.object,
 };
 
-export default ButtonIcon;
+export default KeyDataList;
 </code></pre>
         </article>
     </section>

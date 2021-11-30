@@ -10,6 +10,7 @@ import {
 } from 'recharts';
 import './LineChartGraph.css';
 import Unavailable from '../../Unavailable/Unavailable';
+import { dataAverageSessionsFormat } from '../../../services/format/userAverageSessionsFormat';
 
 /**
  * LineChartGraph with Recharts contain the array's data.
@@ -27,45 +28,8 @@ const LineChartGraph = ({ userAverageSessions }) => {
     // Duplicate array before modified array's data
     const userAverageSessionsArray = [...userAverageSessions];
 
-    // Add 2 data at first & last place to array to reach the horizontal border of the graphic as requested on the design mock-up
-    const prevDay = {
-        day: 0,
-        sessionLength: 0,
-    };
-    const nextDay = {
-        day: 8,
-        sessionLength: 100,
-    };
-    // return prevDay in first place of the array
-    userAverageSessionsArray.unshift(prevDay);
-    // return nextDay in last place of the array
-    userAverageSessionsArray.push(nextDay);
-
-    // Add a property 'firstLetterDay' @type {string} for letters in bottom of graph
-    const dataAverageSessions = userAverageSessionsArray.map(data => {
-        switch (data.day) {
-            case 0:
-                return { firstLetterDay: '', ...data };
-            case 1:
-                return { firstLetterDay: 'L', ...data };
-            case 2:
-                return { firstLetterDay: 'M', ...data };
-            case 3:
-                return { firstLetterDay: 'M', ...data };
-            case 4:
-                return { firstLetterDay: 'J', ...data };
-            case 5:
-                return { firstLetterDay: 'V', ...data };
-            case 6:
-                return { firstLetterDay: 'S', ...data };
-            case 7:
-                return { firstLetterDay: 'D', ...data };
-            case 8:
-                return { firstLetterDay: '', ...data };
-            default:
-                return { ...data };
-        }
-    });
+    // Format the data'userAverageSessions for the requested format's design
+    const data = dataAverageSessionsFormat(userAverageSessionsArray);
 
     /** Customize the Tooltip with content
      * @param {boolean} active - if active, display the tooltip
@@ -90,7 +54,7 @@ const LineChartGraph = ({ userAverageSessions }) => {
             </span>
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart
-                    data={dataAverageSessions}
+                    data={data}
                     margin={{ top: -30, right: -20, left: -20, bottom: -30 }}
                 >
                     <Line

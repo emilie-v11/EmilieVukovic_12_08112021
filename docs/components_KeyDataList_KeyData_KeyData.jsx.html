@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/NavIcons/ButtonIcon/ButtonIcon.jsx</title>
+    <title>JSDoc: Source: components/KeyDataList/KeyData/KeyData.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/NavIcons/ButtonIcon/ButtonIcon.jsx</h1>
+    <h1 class="page-title">Source: components/KeyDataList/KeyData/KeyData.jsx</h1>
 
     
 
@@ -27,38 +27,45 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react';
-import { NavLink } from 'react-router-dom';
+import './KeyData.css';
 import PropTypes from 'prop-types';
-import './ButtonIcon.css';
 
 /**
- * Secondary menu navigation button in NavIcons
- * @param {string} path - link, direction when is clicked
- * @param {string} imgSrc - image's URL
- * @param {string} altText - image's alt, description for screen reader
- * @returns {ReactElement} ButtonIcon component
+ * Card with kcal &amp; nutrients informations
+ * @param {string} src - url for image
+ * @param {number} count - number of quantity
+ * @param {string} unit - unit (kg, kcal...)
+ * @param {string} nutrientsType - type of nutrients (protein,carbohydrat...)
+ *
+ * @returns {ReactElement}
  */
-const ButtonIcon = ({ path, imgSrc, altText }) => {
+
+const KeyData = ({ src, count, unit, nutrientsType }) => {
     return (
-        &lt;NavLink
-            className="nav-icon"
-            to={path}
-            onClick={e => e.preventDefault()}
-        >
-            &lt;button className="btn-icon">
-                &lt;img className="icon" src={imgSrc} alt={altText} />
-            &lt;/button>
-        &lt;/NavLink>
+        &lt;div className="keys-data-card">
+            &lt;div className="key-data-icon">
+                &lt;img className="icon-img" src={src} alt="" />
+            &lt;/div>
+            &lt;p className="key-data-value">
+                &lt;span className="calorie-count">
+                    {count}
+                    {unit}
+                &lt;/span>
+                &lt;span className="nutrients-type">{nutrientsType}&lt;/span>
+            &lt;/p>
+        &lt;/div>
     );
 };
 
-ButtonIcon.propTypes = {
-    imgSrc: PropTypes.string.isRequired,
-    altText: PropTypes.string.isRequired,
-    path: PropTypes.string.isRequired,
+KeyData.propTypes = {
+    style: PropTypes.object,
+    src: PropTypes.string.isRequired,
+    count: PropTypes.number,
+    unit: PropTypes.string.isRequired,
+    nutrientsType: PropTypes.string.isRequired,
 };
 
-export default ButtonIcon;
+export default KeyData;
 </code></pre>
         </article>
     </section>

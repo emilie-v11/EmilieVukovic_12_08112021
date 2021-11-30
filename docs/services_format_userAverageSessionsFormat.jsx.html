@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/NavIcons/ButtonIcon/ButtonIcon.jsx</title>
+    <title>JSDoc: Source: services/format/userAverageSessionsFormat.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/NavIcons/ButtonIcon/ButtonIcon.jsx</h1>
+    <h1 class="page-title">Source: services/format/userAverageSessionsFormat.jsx</h1>
 
     
 
@@ -26,39 +26,55 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
-import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import './ButtonIcon.css';
-
-/**
- * Secondary menu navigation button in NavIcons
- * @param {string} path - link, direction when is clicked
- * @param {string} imgSrc - image's URL
- * @param {string} altText - image's alt, description for screen reader
- * @returns {ReactElement} ButtonIcon component
+            <pre class="prettyprint source linenums"><code>/**
+ * Format userAverageSessions' data for LineChartGraph component
+ * dataAverageSessionsFormat
+ * @param {array} array
+ * @returns {array.object} firstLetterDay, day, sessionLength
  */
-const ButtonIcon = ({ path, imgSrc, altText }) => {
-    return (
-        &lt;NavLink
-            className="nav-icon"
-            to={path}
-            onClick={e => e.preventDefault()}
-        >
-            &lt;button className="btn-icon">
-                &lt;img className="icon" src={imgSrc} alt={altText} />
-            &lt;/button>
-        &lt;/NavLink>
-    );
-};
+export const dataAverageSessionsFormat = arrayAverage => {
+    // Add 2 data at first &amp; last place to array to reach the horizontal border of the graphic as requested on the design mock-up
+    const prevDay = {
+        day: 0,
+        sessionLength: 0,
+    };
+    const nextDay = {
+        day: 8,
+        sessionLength: 100,
+    };
 
-ButtonIcon.propTypes = {
-    imgSrc: PropTypes.string.isRequired,
-    altText: PropTypes.string.isRequired,
-    path: PropTypes.string.isRequired,
-};
+    // return prevDay in first place of the array
+    arrayAverage.unshift(prevDay);
+    // return nextDay in last place of the array
+    arrayAverage.push(nextDay);
 
-export default ButtonIcon;
+    // Add a property 'firstLetterDay' @type {string} for letters in bottom of graph
+    const array = arrayAverage.map(data => {
+        switch (data.day) {
+            case 0:
+                return { firstLetterDay: '', ...data };
+            case 1:
+                return { firstLetterDay: 'L', ...data };
+            case 2:
+                return { firstLetterDay: 'M', ...data };
+            case 3:
+                return { firstLetterDay: 'M', ...data };
+            case 4:
+                return { firstLetterDay: 'J', ...data };
+            case 5:
+                return { firstLetterDay: 'V', ...data };
+            case 6:
+                return { firstLetterDay: 'S', ...data };
+            case 7:
+                return { firstLetterDay: 'D', ...data };
+            case 8:
+                return { firstLetterDay: '', ...data };
+            default:
+                return { ...data };
+        }
+    });
+    return array;
+};
 </code></pre>
         </article>
     </section>

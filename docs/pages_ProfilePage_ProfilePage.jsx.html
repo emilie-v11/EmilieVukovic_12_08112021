@@ -29,17 +29,13 @@
             <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './ProfilePage.css';
-import Calories from '../../assets/icons-keyData/calories-icon.png';
-import Protein from '../../assets/icons-keyData/protein-icon.png';
-import Carbs from '../../assets/icons-keyData/carbs-icon.png';
-import Fat from '../../assets/icons-keyData/fat-icon.png';
 import Loader from '../../components/Loader/Loader';
 import Error404 from '../Error404/Error404';
-import KeyData from '../../components/KeyData/KeyData';
 import RadarChartGraph from '../../components/Charts/RadarChartGraph/RadarChartGraph';
 import RadialBarChartGraph from '../../components/Charts/RadialBarChartGraph/RadialBarChartGraph';
 import LineChartGraph from '../../components/Charts/LineChartGraph/LineChartGraph';
 import BarChartGraph from '../../components/Charts/BarChartGraph/BarChartGraph';
+import KeyDataList from '../../components/KeyDataList/KeyDataList';
 import {
     getUserInfos,
     getUserActivity,
@@ -120,7 +116,6 @@ const ProfilePage = () => {
                  */
                 const performance = await getUserPerformance(id);
                 setUserPerformance(performance.data.data.data);
-                
             } catch (error) {
                 console.error('Error: profileAllData', error);
                 setError(true);
@@ -129,6 +124,8 @@ const ProfilePage = () => {
         }
         getProfilePageAllData();
     }, [id]);
+
+    const { firstName } = userInfos;
 
     if ((!isLoading &amp;&amp; error) || id === undefined || setError === true) {
         return &lt;Error404 />;
@@ -141,7 +138,7 @@ const ProfilePage = () => {
                     &lt;h1>
                         {`Bonjour `}
                         &lt;span className="profilePage-firstName">
-                            {userInfos.firstName}
+                            {firstName}
                         &lt;/span>
                     &lt;/h1>
                     &lt;p>
@@ -174,30 +171,7 @@ const ProfilePage = () => {
                     &lt;/div>
 
                     &lt;div className="keys-data-cards">
-                        &lt;KeyData
-                            src={Calories}
-                            count={keyData.calorieCount}
-                            unit={'kCal'}
-                            nutrientsType={'Calories'}
-                        />
-                        &lt;KeyData
-                            src={Protein}
-                            count={keyData.proteinCount}
-                            unit={'g'}
-                            nutrientsType={'Proteines'}
-                        />
-                        &lt;KeyData
-                            src={Carbs}
-                            count={keyData.carbohydrateCount}
-                            unit={'g'}
-                            nutrientsType={'Glucides'}
-                        />
-                        &lt;KeyData
-                            src={Fat}
-                            count={keyData.lipidCount}
-                            unit={'g'}
-                            nutrientsType={'Lipides'}
-                        />
+                        &lt;KeyDataList keyData={keyData} />
                     &lt;/div>
                 &lt;/div>
             &lt;/main>
@@ -216,13 +190,13 @@ export default ProfilePage;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activity">activity</a></li><li><a href="global.html#averageSessions">averageSessions</a></li><li><a href="global.html#BarChartGraph">BarChartGraph</a></li><li><a href="global.html#baseURL">baseURL</a></li><li><a href="global.html#ButtonIcon">ButtonIcon</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#getUserActivity">getUserActivity</a></li><li><a href="global.html#getUserAverageSessions">getUserAverageSessions</a></li><li><a href="global.html#getUserInfos">getUserInfos</a></li><li><a href="global.html#getUserPerformance">getUserPerformance</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#LineChartGraph">LineChartGraph</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#MainNav">MainNav</a></li><li><a href="global.html#NavIcons">NavIcons</a></li><li><a href="global.html#performance">performance</a></li><li><a href="global.html#RadarChartGraph">RadarChartGraph</a></li><li><a href="global.html#RadialBarChartGraph">RadialBarChartGraph</a></li><li><a href="global.html#SwitchUsers">SwitchUsers</a></li><li><a href="global.html#Unavailable">Unavailable</a></li><li><a href="global.html#userInfos">userInfos</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activity">activity</a></li><li><a href="global.html#averageSessions">averageSessions</a></li><li><a href="global.html#BarChartGraph">BarChartGraph</a></li><li><a href="global.html#baseURL">baseURL</a></li><li><a href="global.html#ButtonIcon">ButtonIcon</a></li><li><a href="global.html#dataActivityFormat">dataActivityFormat</a></li><li><a href="global.html#dataAverageSessionsFormat">dataAverageSessionsFormat</a></li><li><a href="global.html#dataPerformanceFormat">dataPerformanceFormat</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#getUserActivity">getUserActivity</a></li><li><a href="global.html#getUserAverageSessions">getUserAverageSessions</a></li><li><a href="global.html#getUserInfos">getUserInfos</a></li><li><a href="global.html#getUserPerformance">getUserPerformance</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#KeyDataList">KeyDataList</a></li><li><a href="global.html#LineChartGraph">LineChartGraph</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#MainNav">MainNav</a></li><li><a href="global.html#NavIcons">NavIcons</a></li><li><a href="global.html#performance">performance</a></li><li><a href="global.html#RadarChartGraph">RadarChartGraph</a></li><li><a href="global.html#RadialBarChartGraph">RadialBarChartGraph</a></li><li><a href="global.html#SwitchUsers">SwitchUsers</a></li><li><a href="global.html#Unavailable">Unavailable</a></li><li><a href="global.html#userInfos">userInfos</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Nov 28 2021 18:32:12 GMT+0100 (heure normale d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue Nov 30 2021 05:58:41 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

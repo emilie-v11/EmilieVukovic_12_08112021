@@ -12,6 +12,7 @@ import {
     Legend,
     Bar,
 } from 'recharts';
+import { dataActivityFormat } from '../../../services/format/userActivityFormat';
 
 /**
  * BarChartGraph with Recharts contain the array's data
@@ -28,28 +29,8 @@ const BarChartGraph = ({ userActivity }) => {
     // Duplicate array before modified array's data
     const userActivityArray = [...userActivity];
 
-    /**
-     * Change the type of 'day', for the requested format's design. ("2020-07-01" => 1), keep just the day's data (dd) & without the first useless zero.
-     * @param {array<object>} userActivityArray
-     *
-     * @returns {array<object>} newData
-     */
-    // create new empty array
-    const newData = [];
-    // loop in every object of the array 'userActivityArray'
-    for (let datum of userActivityArray) {
-        // Remove '-' & changes the date's type, string => number. the useless zero disapear. 01 => 1, 02 => 2 ...
-        const [yyyy, mm, dd] = datum.day.split('-').map(Number); //other method : .map(x => +x)
-
-        // Push the modified data in the 'newData' array and add the other data not modified.
-        newData.push({
-            //day: dd, // for keep it in Number format
-            day: `${dd}`, // or for keep it in string format
-            fullDate: `${dd}/${mm}/${yyyy}`, // store the full date, but not use here
-            kilogram: datum.kilogram,
-            calories: datum.calories,
-        });
-    }
+    // Format the data'userActivity for the requested format's design
+    const data = dataActivityFormat(userActivityArray);
 
     /**
      * Customize the Tooltip with content
@@ -77,7 +58,7 @@ const BarChartGraph = ({ userActivity }) => {
             </div>
             <ResponsiveContainer width={'100%'} height={'100%'}>
                 <BarChart
-                    data={newData}
+                    data={data}
                     margin={{ top: 110, right: 48, bottom: 32, left: 48 }}
                     barGap={8}
                     barCategoryGap="35%"

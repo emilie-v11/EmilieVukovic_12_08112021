@@ -15,7 +15,6 @@ import Unavailable from '../../Unavailable/Unavailable';
  *
  * @returns {ReactElement} RadialBarChart
  */
-
 const RadialBarChartGraph = ({ todayScore }) => {
     //if data's props aren't available, return 'Unvailable' component in place of Graph
     if (!todayScore) {

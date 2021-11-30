@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './ProfilePage.css';
-import Calories from '../../assets/icons-keyData/calories-icon.png';
-import Protein from '../../assets/icons-keyData/protein-icon.png';
-import Carbs from '../../assets/icons-keyData/carbs-icon.png';
-import Fat from '../../assets/icons-keyData/fat-icon.png';
 import Loader from '../../components/Loader/Loader';
 import Error404 from '../Error404/Error404';
-import KeyData from '../../components/KeyData/KeyData';
 import RadarChartGraph from '../../components/Charts/RadarChartGraph/RadarChartGraph';
 import RadialBarChartGraph from '../../components/Charts/RadialBarChartGraph/RadialBarChartGraph';
 import LineChartGraph from '../../components/Charts/LineChartGraph/LineChartGraph';
 import BarChartGraph from '../../components/Charts/BarChartGraph/BarChartGraph';
+import KeyDataList from '../../components/KeyDataList/KeyDataList';
 import {
     getUserInfos,
     getUserActivity,
@@ -92,7 +88,6 @@ const ProfilePage = () => {
                  */
                 const performance = await getUserPerformance(id);
                 setUserPerformance(performance.data.data.data);
-                
             } catch (error) {
                 console.error('Error: profileAllData', error);
                 setError(true);
@@ -101,6 +96,8 @@ const ProfilePage = () => {
         }
         getProfilePageAllData();
     }, [id]);
+
+    const { firstName } = userInfos;
 
     if ((!isLoading && error) || id === undefined || setError === true) {
         return <Error404 />;
@@ -113,7 +110,7 @@ const ProfilePage = () => {
                     <h1>
                         {`Bonjour `}
                         <span className="profilePage-firstName">
-                            {userInfos.firstName}
+                            {firstName}
                         </span>
                     </h1>
                     <p>
@@ -146,30 +143,7 @@ const ProfilePage = () => {
                     </div>
 
                     <div className="keys-data-cards">
-                        <KeyData
-                            src={Calories}
-                            count={keyData.calorieCount}
-                            unit={'kCal'}
-                            nutrientsType={'Calories'}
-                        />
-                        <KeyData
-                            src={Protein}
-                            count={keyData.proteinCount}
-                            unit={'g'}
-                            nutrientsType={'Proteines'}
-                        />
-                        <KeyData
-                            src={Carbs}
-                            count={keyData.carbohydrateCount}
-                            unit={'g'}
-                            nutrientsType={'Glucides'}
-                        />
-                        <KeyData
-                            src={Fat}
-                            count={keyData.lipidCount}
-                            unit={'g'}
-                            nutrientsType={'Lipides'}
-                        />
+                        <KeyDataList keyData={keyData} />
                     </div>
                 </div>
             </main>

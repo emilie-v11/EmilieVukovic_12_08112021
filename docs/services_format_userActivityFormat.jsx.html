@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/NavIcons/ButtonIcon/ButtonIcon.jsx</title>
+    <title>JSDoc: Source: services/format/userActivityFormat.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/NavIcons/ButtonIcon/ButtonIcon.jsx</h1>
+    <h1 class="page-title">Source: services/format/userActivityFormat.jsx</h1>
 
     
 
@@ -26,39 +26,32 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
-import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import './ButtonIcon.css';
-
-/**
- * Secondary menu navigation button in NavIcons
- * @param {string} path - link, direction when is clicked
- * @param {string} imgSrc - image's URL
- * @param {string} altText - image's alt, description for screen reader
- * @returns {ReactElement} ButtonIcon component
+            <pre class="prettyprint source linenums"><code>/**
+ * Change the type of 'day', for the requested format's design. ("2020-07-01" => 1), keep just the day's data (dd) &amp; without the first useless zero.
+ * dataActivityFormat
+ * @param {array&lt;object>} userActivityArray
+ *
+ * @returns {array&lt;object>} newData
  */
-const ButtonIcon = ({ path, imgSrc, altText }) => {
-    return (
-        &lt;NavLink
-            className="nav-icon"
-            to={path}
-            onClick={e => e.preventDefault()}
-        >
-            &lt;button className="btn-icon">
-                &lt;img className="icon" src={imgSrc} alt={altText} />
-            &lt;/button>
-        &lt;/NavLink>
-    );
-};
+export const dataActivityFormat = array => {
+    // create new empty array
+    const newData = [];
+    // loop in every object of the array 'userActivityArray'
+    for (let datum of array) {
+        // Remove '-' &amp; changes the date's type, string => number. the useless zero disapear. 01 => 1, 02 => 2 ...
+        const [yyyy, mm, dd] = datum.day.split('-').map(Number); //other method : .map(x => +x)
 
-ButtonIcon.propTypes = {
-    imgSrc: PropTypes.string.isRequired,
-    altText: PropTypes.string.isRequired,
-    path: PropTypes.string.isRequired,
+        // Push the modified data in the 'newData' array and add the other data not modified.
+        newData.push({
+            //day: dd, // for keep it in Number format
+            day: `${dd}`, // or for keep it in string format
+            fullDate: `${dd}/${mm}/${yyyy}`, // store the full date, but not use here
+            kilogram: datum.kilogram,
+            calories: datum.calories,
+        });
+    }
+    return newData;
 };
-
-export default ButtonIcon;
 </code></pre>
         </article>
     </section>

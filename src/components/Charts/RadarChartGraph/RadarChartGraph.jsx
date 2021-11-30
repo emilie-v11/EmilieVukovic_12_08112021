@@ -8,13 +8,13 @@ import {
     PolarAngleAxis,
     ResponsiveContainer,
 } from 'recharts';
+import { dataPerformanceFormat } from '../../../services/format/userPerformanceFormat';
 
 /**
  * RadarChartGraph with Recharts contain the array's data
  * @param {array} userPerformance - value & kind.
  * @returns {ReactElement} RadarChart
  */
-
 const RadarChartGraph = ({ userPerformance }) => {
     //if data's props aren't available, return 'Unvailable' component in place of Graph
     if (!userPerformance) {
@@ -23,31 +23,13 @@ const RadarChartGraph = ({ userPerformance }) => {
     // Duplicate array before modified array's data
     const userPerformanceArray = [...userPerformance];
 
-    // Add a property 'activity' for each kind of object in array.
-    // & reverse the order of kind for respect the design mock-up.
-    const dataPerformance = userPerformanceArray.reverse().map(data => {
-        switch (data.kind) {
-            case 1:
-                return { activity: 'Cardio', ...data };
-            case 2:
-                return { activity: 'Energie', ...data };
-            case 3:
-                return { activity: 'Endurance', ...data };
-            case 4:
-                return { activity: 'Force', ...data };
-            case 5:
-                return { activity: 'Vitesse', ...data };
-            case 6:
-                return { activity: 'Intensité', ...data };
-            default:
-                return { ...data };
-        }
-    });
+    // Format the data'userPerformance for the requested format's design
+    const data = dataPerformanceFormat(userPerformanceArray);
 
     return (
         <ResponsiveContainer width="100%" height="100%">
             <RadarChart
-                data={dataPerformance}
+                data={data}
                 outerRadius={window.innerWidth > 1340 ? '70%' : '60%'}
             >
                 <PolarGrid radialLines={false} />

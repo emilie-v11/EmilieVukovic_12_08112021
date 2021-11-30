@@ -44,11 +44,6 @@
 
     <section>
         <article><h1>PROJECT 12: SPORTSEE - Frontend</h1>
-<p>Develop an analytics dashboard with React. Build the new profile page for users. Use Fetch or Axios to get the data from a NodeJS server.</p>
-<ul>
-<li><a href="https://www.figma.com/file/BMomGVZqLZb811mDMShpLu/UI-design-Sportify-FR?node-id=0%3A1">Mock-up</a>, Figma.</li>
-<li><a href="https://www.notion.so/Tableau-de-bord-SportSee-6686aa4b5f44417881a4884c9af5669e">Kanban</a>, Notion, with the 15 User Stories.</li>
-</ul>
 <h2>1. Dependencies</h2>
 <ul>
 <li><a href="https://reactjs.org/">react</a> v17.0.2</li>
@@ -62,7 +57,7 @@
 <h3>Installation Dependencies</h3>
 <ul>
 <li>You need <a href="https://git-scm.com/">Git</a> to clone the repository</li>
-<li>You need <a href="https://nodejs.org/en/">NodeJS</a> (v14.15.5) to run the <code>npm</code> commands</li>
+<li>You need <a href="https://nodejs.org/en/">NodeJS</a> (v16.10.0)</li>
 </ul>
 <h2>2. Getting started</h2>
 <h3>First, install the backend (micro API)</h3>
@@ -85,29 +80,7 @@
 <ul>
 <li>Open <a href="http://localhost:3001">http://localhost:3001</a> to view it in the browser.</li>
 </ul>
-<h2>3. Temporary Navigation on the web application</h2>
-<p>The only active part of the web application is the Profile Page. The other navigation buttons are disabled.
-There are 2 ways to navigate at the moment: through the &quot;Profile&quot; navigation button and the Switch users page or by URL directly.
-Choose yours, or try both 😉 !</p>
-<h3>Switch Users Page :</h3>
-<p>The URL <a href="http://localhost:3001">http://localhost:3001</a> and <a href="http://localhost:3001/profile">http://localhost:3001/profile</a>,
-both point to a Switch users page which makes it easy to switch between users. You can access this by clicking on the &quot;Profile&quot; button
-in the main navigation at the top of the site, or by writing 1 of these 2 URLs directly.</p>
-<h3>Profile Page :</h3>
-<p>The 2 URL available (for the 2 actives users) are:</p>
-<ul>
-<li><a href="http://localhost:3001/profile/user/12">http://localhost:3001/profile/user/12</a></li>
-<li><a href="http://localhost:3001/profile/user/18">http://localhost:3001/profile/user/18</a></li>
-</ul>
-<p>You can also access each of them by clicking on the card of the user you want to see from the Switch Users page.</p>
-<h2>4. Documentation with JSDoc</h2>
-<p>For access to the website documentation :</p>
-<ul>
-<li><a href="http://localhost:5500/frontend/docs/index.html">http://localhost:5500/frontend/docs/index.html</a>
-🚨 Be careful ! If you have not called your frontend folder &quot;frontend&quot;, change this part of the URL by replacing the word &quot;frontend&quot; with the name of your folder.</li>
-<li>Or open the Docs folder, look for the index.html file, right click on it and select the command &quot;open in browser&quot; or &quot;open with live server.</li>
-</ul>
-<h2>5. Learn More</h2>
+<h2>3. Learn More</h2>
 <ul>
 <li>This project was bootstrapped with <a href="https://github.com/facebook/create-react-app">Create React App</a>.</li>
 <li>You can learn more in the <a href="https://facebook.github.io/create-react-app/docs/getting-started">Create React App documentation</a>.</li>
@@ -123,13 +96,13 @@ in the main navigation at the top of the site, or by writing 1 of these 2 URLs d
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activity">activity</a></li><li><a href="global.html#averageSessions">averageSessions</a></li><li><a href="global.html#BarChartGraph">BarChartGraph</a></li><li><a href="global.html#baseURL">baseURL</a></li><li><a href="global.html#ButtonIcon">ButtonIcon</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#getUserActivity">getUserActivity</a></li><li><a href="global.html#getUserAverageSessions">getUserAverageSessions</a></li><li><a href="global.html#getUserInfos">getUserInfos</a></li><li><a href="global.html#getUserPerformance">getUserPerformance</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#LineChartGraph">LineChartGraph</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#MainNav">MainNav</a></li><li><a href="global.html#NavIcons">NavIcons</a></li><li><a href="global.html#performance">performance</a></li><li><a href="global.html#RadarChartGraph">RadarChartGraph</a></li><li><a href="global.html#RadialBarChartGraph">RadialBarChartGraph</a></li><li><a href="global.html#SwitchUsers">SwitchUsers</a></li><li><a href="global.html#Unavailable">Unavailable</a></li><li><a href="global.html#userInfos">userInfos</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activity">activity</a></li><li><a href="global.html#averageSessions">averageSessions</a></li><li><a href="global.html#BarChartGraph">BarChartGraph</a></li><li><a href="global.html#baseURL">baseURL</a></li><li><a href="global.html#ButtonIcon">ButtonIcon</a></li><li><a href="global.html#dataActivityFormat">dataActivityFormat</a></li><li><a href="global.html#dataAverageSessionsFormat">dataAverageSessionsFormat</a></li><li><a href="global.html#dataPerformanceFormat">dataPerformanceFormat</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#getUserActivity">getUserActivity</a></li><li><a href="global.html#getUserAverageSessions">getUserAverageSessions</a></li><li><a href="global.html#getUserInfos">getUserInfos</a></li><li><a href="global.html#getUserPerformance">getUserPerformance</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#KeyDataList">KeyDataList</a></li><li><a href="global.html#LineChartGraph">LineChartGraph</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#MainNav">MainNav</a></li><li><a href="global.html#NavIcons">NavIcons</a></li><li><a href="global.html#performance">performance</a></li><li><a href="global.html#RadarChartGraph">RadarChartGraph</a></li><li><a href="global.html#RadialBarChartGraph">RadialBarChartGraph</a></li><li><a href="global.html#SwitchUsers">SwitchUsers</a></li><li><a href="global.html#Unavailable">Unavailable</a></li><li><a href="global.html#userInfos">userInfos</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Nov 28 2021 18:32:12 GMT+0100 (heure normale d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue Nov 30 2021 05:58:41 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>
